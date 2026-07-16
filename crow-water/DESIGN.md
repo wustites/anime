@@ -11,8 +11,8 @@
 - `#2D2926` — ink outline
 
 ## Typography
-- Display: `STKaiti`, `KaiTi`, serif — 手写绘本标题
-- Support: `Arial`, sans-serif — 小型英文与标签
+- Display: Google `Noto Serif SC` — 绘本标题与正文
+- Support: Google `Noto Sans SC` — 小型英文与标签
 
 ## Motion
 角色使用轻微弹性与弧线运动；环境缓慢漂移；场景用暖色纸页擦拭转场。进入动作快慢错落，保留阅读停顿。

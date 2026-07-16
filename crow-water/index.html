@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=1920,height=1080" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
+      @font-face {
+        font-family: "Noto Sans SC";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG3bCnYw.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7SCqyWv.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7QrrCWv.ttf")
+          format("truetype");
+      }
+
       :root {
         --paper: #fff5d6;
         --ink: #2d2926;
@@ -25,7 +58,7 @@
         background: var(--paper);
       }
       body {
-        font-family: Georgia, serif;
+        font-family: "Noto Serif SC", serif;
         color: var(--ink);
       }
       #book {
@@ -135,7 +168,7 @@
       }
       .eyebrow {
         font:
-          900 26px Arial,
+          900 26px "Noto Sans SC",
           sans-serif;
         letter-spacing: 0.28em;
         text-transform: uppercase;
@@ -156,7 +189,7 @@
       }
       .chapter {
         font:
-          900 22px Arial,
+          900 22px "Noto Sans SC",
           sans-serif;
         border: 4px solid var(--ink);
         border-radius: 999px;
