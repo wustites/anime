@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=1920,height=1080" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
+      @font-face {
+        font-family: "Noto Sans SC";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG3bCnYw.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7SCqyWv.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv.ttf")
+          format("truetype");
+      }
+      @font-face {
+        font-family: "Noto Serif SC";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7QrrCWv.ttf")
+          format("truetype");
+      }
+
       :root {
         --paper: #fff5d6;
         --ink: #2d2926;
@@ -26,7 +59,7 @@
         background: var(--paper);
       }
       body {
-        font-family: Georgia, serif;
+        font-family: "Noto Serif SC", serif;
         color: var(--ink);
       }
       #book {
@@ -117,7 +150,7 @@
       }
       .title-tag {
         font:
-          900 25px Arial,
+          900 25px "Noto Sans SC",
           sans-serif;
         letter-spacing: 0.28em;
         color: var(--red);
@@ -136,7 +169,7 @@
       }
       .number {
         font:
-          900 150px Arial,
+          900 150px "Noto Sans SC",
           sans-serif;
         color: rgba(45, 41, 38, 0.12);
         position: absolute;
@@ -239,7 +272,7 @@
       .shell:after {
         content: "◇ ◇";
         position: absolute;
-        font: 900 55px Arial;
+        font: 900 55px "Noto Sans SC", sans-serif;
         color: #fff5d6;
         left: 30px;
         top: 38px;
@@ -271,7 +304,7 @@
       }
       .speed {
         position: absolute;
-        font: 900 70px Arial;
+        font: 900 70px "Noto Sans SC", sans-serif;
         color: var(--red);
         letter-spacing: 18px;
       }
@@ -333,7 +366,7 @@
         position: absolute;
         right: 440px;
         top: 270px;
-        font: 900 105px Arial;
+        font: 900 105px "Noto Sans SC", sans-serif;
         color: #fff5d6;
         text-shadow: 6px 6px 0 var(--ink);
         transform: rotate(-10deg);
