@@ -1,0 +1,49 @@
+name: Release Foolish Move Mountain
+
+on:
+  push:
+    tags:
+      - "v*-foolish-move-mountain"
+
+permissions:
+  contents: write
+
+jobs:
+  render-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: foolish-move-mountain
+
+      - name: Render video
+        run: npm run render
+        working-directory: foolish-move-mountain
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: 愚公移山 — ${{ github.ref_name }}
+          body: |
+            ## ⛰️ 愚公移山 — ${{ github.ref_name }}
+
+            自动渲染的绘本动画视频。
+
+            - **项目**: foolish-move-mountain
+            - **提交**: ${{ github.sha }}
+          files: foolish-move-mountain/renders/*.mp4
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
