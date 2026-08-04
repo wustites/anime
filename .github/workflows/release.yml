@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   render-and-release:
-    if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
     strategy:
       fail-fast: false
       matrix:
@@ -49,25 +48,34 @@ jobs:
       - name: Install edge-tts
         run: pip install edge-tts
 
+      # job-level `if` is evaluated BEFORE the strategy matrix is applied,
+      # so matrix.tag-suffix is unavailable there; filter per-project inside
+      # steps instead (evaluated after matrix expansion).
       - name: Generate voice audio
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         run: python gen_audio.py ${{ matrix.project }}
 
       - name: Install dependencies
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         run: npm install
         working-directory: ${{ matrix.project }}
 
       - name: Lint and validate
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         run: npm run check
         working-directory: ${{ matrix.project }}
 
       - name: Render video
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         run: npm run render
         working-directory: ${{ matrix.project }}
 
       - name: Mix audio into video
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         run: python mix_audio.py ${{ matrix.project }}
 
       - name: Create GitHub Release
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ matrix.emoji }} ${{ matrix.display-name }} — ${{ github.ref_name }}
