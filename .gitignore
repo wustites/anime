@@ -3,6 +3,5 @@ renders/
 node_modules/
 audio/
 *.py
-!gen_all_audio.py
-!mix_audio_crow.py
-!mix_audio_turtle.py
+!gen_audio.py
+!mix_audio.py

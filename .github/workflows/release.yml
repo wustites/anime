@@ -1,0 +1,84 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*-*"
+
+permissions:
+  contents: write
+
+jobs:
+  render-and-release:
+    if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: crow-water
+            tag-suffix: crow-water
+            display-name: 乌鸦喝水
+            emoji: 🐦
+          - project: turtle-rabbit
+            tag-suffix: turtle-rabbit
+            display-name: 龟兔赛跑
+            emoji: 🐢🐰
+          - project: foolish-move-mountain
+            tag-suffix: foolish-move-mountain
+            display-name: 愚公移山
+            emoji: ⛰️
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install edge-tts
+        run: pip install edge-tts
+
+      - name: Generate voice audio
+        run: python gen_audio.py ${{ matrix.project }}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ matrix.project }}
+
+      - name: Lint and validate
+        run: npm run check
+        working-directory: ${{ matrix.project }}
+
+      - name: Render video
+        run: npm run render
+        working-directory: ${{ matrix.project }}
+
+      - name: Mix audio into video
+        run: python mix_audio.py ${{ matrix.project }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ matrix.emoji }} ${{ matrix.display-name }} — ${{ github.ref_name }}
+          body: |
+            ## ${{ matrix.emoji }} ${{ matrix.display-name }} — ${{ github.ref_name }}
+
+            自动渲染的绘本动画视频。
+
+            - **项目**: ${{ matrix.project }}
+            - **提交**: ${{ github.sha }}
+          files: ${{ matrix.project }}/renders/*.mp4
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
