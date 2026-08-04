@@ -29,15 +29,6 @@
         src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv.ttf")
           format("truetype");
       }
-      @font-face {
-        font-family: "Noto Serif SC";
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7QrrCWv.ttf")
-          format("truetype");
-      }
-
       :root {
         --paper: #fff5d6;
         --ink: #2d2926;
@@ -309,12 +300,254 @@
         letter-spacing: 18px;
       }
       .speed.s1 {
-        left: 150px;
-        bottom: 430px;
+        left: 1080px;
+        bottom: 500px;
       }
       .speed.s2 {
-        left: 80px;
-        bottom: 350px;
+        left: 1180px;
+        bottom: 415px;
+      }
+      .cloud {
+        position: absolute;
+        width: 150px;
+        height: 60px;
+        background: #fff9e8;
+        border: 8px solid var(--ink);
+        border-radius: 999px;
+        z-index: 2;
+      }
+      .cloud::before,
+      .cloud::after {
+        content: "";
+        position: absolute;
+        background: #fff9e8;
+        border: 8px solid var(--ink);
+        border-radius: 50%;
+        z-index: -1;
+      }
+      .cloud::before {
+        width: 76px;
+        height: 76px;
+        left: 16px;
+        top: -46px;
+      }
+      .cloud::after {
+        width: 58px;
+        height: 58px;
+        right: 22px;
+        top: -34px;
+      }
+      .cloud.a {
+        left: 520px;
+        top: 80px;
+        transform: scale(0.85);
+      }
+      .cloud.b {
+        left: 900px;
+        top: 60px;
+        transform: scale(1.05);
+      }
+      .cloud.c {
+        left: 1200px;
+        top: 110px;
+        transform: scale(0.7);
+      }
+      .bird {
+        position: absolute;
+        width: 46px;
+        height: 24px;
+        z-index: 2;
+      }
+      .bird::before,
+      .bird::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 26px;
+        height: 15px;
+        background: var(--ink);
+        border-radius: 50% 50% 0 0;
+      }
+      .bird::before {
+        left: 0;
+        transform: rotate(16deg);
+      }
+      .bird::after {
+        right: 0;
+        transform: rotate(-16deg);
+      }
+      .bird.a {
+        left: 240px;
+        top: 190px;
+      }
+      .bird.b {
+        left: 380px;
+        top: 130px;
+        transform: scale(0.8);
+      }
+      .gantry {
+        position: absolute;
+        left: 220px;
+        bottom: 200px;
+        width: 190px;
+        height: 410px;
+        z-index: 6;
+      }
+      .g-pole {
+        position: absolute;
+        left: 24px;
+        bottom: 0;
+        width: 16px;
+        height: 410px;
+        background: #a76f4d;
+        border: 7px solid var(--ink);
+        border-radius: 10px;
+      }
+      .g-pennant {
+        position: absolute;
+        left: 32px;
+        bottom: 356px;
+        width: 158px;
+        height: 84px;
+        background: var(--red);
+        border: 8px solid var(--ink);
+        border-radius: 0 70% 70% 0 / 0 100% 100% 0;
+      }
+      .g-pennant::after {
+        content: "起点";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font: 900 34px "Noto Sans SC", sans-serif;
+        color: #fff5d6;
+        text-shadow: 3px 3px 0 var(--ink);
+      }
+      .startline {
+        position: absolute;
+        left: 380px;
+        bottom: 78px;
+        width: 24px;
+        height: 246px;
+        background: #fff9e8;
+        border: 8px solid var(--ink);
+        z-index: 3;
+      }
+      .bush {
+        position: absolute;
+        width: 120px;
+        height: 64px;
+        background: var(--teal);
+        border: 8px solid var(--ink);
+        border-radius: 50% 50% 45% 45%;
+        z-index: 5;
+      }
+      .bush::before {
+        content: "";
+        position: absolute;
+        width: 84px;
+        height: 50px;
+        background: var(--green);
+        border: 8px solid var(--ink);
+        border-radius: 50%;
+        left: -28px;
+        top: -12px;
+      }
+      .bush.b1 {
+        left: 950px;
+        bottom: 34px;
+      }
+      .bush.b2 {
+        left: 1340px;
+        bottom: 44px;
+        transform: scale(1.15);
+      }
+      .bush.b3 {
+        left: 1660px;
+        bottom: 30px;
+        transform: scale(0.8);
+      }
+      .flower {
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        background: var(--pink);
+        border: 7px solid var(--ink);
+        border-radius: 50%;
+        z-index: 6;
+      }
+      .flower::before,
+      .flower::after {
+        content: "";
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background: var(--gold);
+        border: 6px solid var(--ink);
+        border-radius: 50%;
+        top: -4px;
+      }
+      .flower::before {
+        left: -20px;
+      }
+      .flower::after {
+        right: -20px;
+      }
+      .flower.f1 {
+        left: 1100px;
+        bottom: 64px;
+      }
+      .flower.f2 {
+        left: 1480px;
+        bottom: 72px;
+        transform: scale(0.85);
+      }
+      .flower.f3 {
+        left: 1750px;
+        bottom: 56px;
+      }
+      .rb-body::after {
+        content: "";
+        position: absolute;
+        width: 104px;
+        height: 80px;
+        background: #ffd9cc;
+        border-radius: 50%;
+        left: 24px;
+        bottom: 12px;
+      }
+      .rb-head::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 14px;
+        background: var(--pink);
+        border: 6px solid var(--ink);
+        border-radius: 50%;
+        right: 32px;
+        top: 52px;
+      }
+      .tt-tail {
+        position: absolute;
+        width: 44px;
+        height: 26px;
+        background: #aac86a;
+        border: 7px solid var(--ink);
+        border-radius: 50% 50% 30% 30%;
+        left: -6px;
+        bottom: 42px;
+        transform: rotate(-22deg);
+      }
+      .tt-head::after {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 12px;
+        border: 5px solid var(--ink);
+        border-top: 0;
+        border-radius: 0 0 50% 50%;
+        right: 16px;
+        bottom: 12px;
       }
       .scene2 {
         background: #9ac787;
@@ -388,12 +621,154 @@
         bottom: 90px;
         border-top: 8px dashed var(--ink);
       }
+      .sky2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 290px;
+        background: #cfe8c4;
+      }
+      .scene2 .sun {
+        right: 60px;
+        top: 130px;
+        width: 120px;
+        height: 120px;
+        border-width: 8px;
+        box-shadow: 10px 10px 0 var(--red);
+      }
+      .scene2 .cloud.a {
+        left: 960px;
+        top: 100px;
+      }
+      .scene2 .cloud.b {
+        left: 1180px;
+        top: 60px;
+        transform: scale(0.8);
+      }
+      .hill-back {
+        position: absolute;
+        left: -80px;
+        bottom: -40px;
+        width: 1500px;
+        height: 560px;
+        background: #bcd9a2;
+        border-radius: 50% 50% 0 0;
+      }
+      .scene2 .rb-eye {
+        background: transparent;
+        border: 6px solid var(--ink);
+        border-top: none;
+        border-radius: 0 0 50% 50%;
+        width: 30px;
+        height: 16px;
+        right: 22px;
+        top: 44px;
+        box-shadow: 18px 8px 0 2px var(--pink);
+      }
+      .grass {
+        position: absolute;
+        width: 26px;
+        height: 56px;
+        background: var(--green);
+        border: 6px solid var(--ink);
+        border-radius: 60% 60% 40% 40%;
+        transform-origin: bottom;
+        z-index: 6;
+      }
+      .grass.g2 {
+        background: var(--teal);
+        transform: rotate(14deg) scale(0.8);
+      }
+      .grass.g3 {
+        transform: rotate(-12deg) scale(0.7);
+      }
+      .grass.g4 {
+        background: var(--teal);
+        transform: rotate(8deg) scale(0.9);
+      }
+      .grass.g5 {
+        transform: rotate(-18deg) scale(0.75);
+      }
+      .grass.g1 {
+        left: 150px;
+        bottom: 34px;
+      }
+      .grass.g2 {
+        left: 480px;
+        bottom: 46px;
+      }
+      .grass.g3 {
+        left: 940px;
+        bottom: 32px;
+      }
+      .grass.g4 {
+        left: 1280px;
+        bottom: 50px;
+      }
+      .grass.g5 {
+        left: 1660px;
+        bottom: 36px;
+      }
+      .post {
+        position: absolute;
+        bottom: 92px;
+        width: 8px;
+        height: 62px;
+        background: #a76f4d;
+        border: 5px solid var(--ink);
+        border-radius: 6px;
+        z-index: 5;
+      }
+      .post::after {
+        content: "";
+        position: absolute;
+        top: -27px;
+        left: -14px;
+        width: 26px;
+        height: 26px;
+        background: var(--red);
+        border: 5px solid var(--ink);
+        transform: rotate(45deg);
+        border-radius: 4px;
+      }
+      .post.p1 {
+        left: 300px;
+      }
+      .post.p2 {
+        left: 560px;
+      }
+      .post.p3 {
+        left: 820px;
+      }
+      .post.p4 {
+        left: 1080px;
+      }
+      .leaf {
+        position: absolute;
+        width: 34px;
+        height: 20px;
+        background: var(--gold);
+        border: 6px solid var(--ink);
+        border-radius: 60% 20% 60% 20%;
+        z-index: 5;
+      }
+      .leaf.l1 {
+        left: 1400px;
+        top: 420px;
+      }
+      .leaf.l2 {
+        left: 1560px;
+        top: 470px;
+        transform: scale(0.85);
+      }
       .scene3 {
         background: var(--red);
       }
       .scene3 .scene-content {
         justify-content: center;
         padding-left: 180px;
+        z-index: 6;
       }
       .finish {
         position: absolute;
@@ -405,6 +780,153 @@
           0/130px 130px;
         border-left: 10px solid var(--ink);
         border-right: 10px solid var(--ink);
+        z-index: 5;
+      }
+      .finish::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--gold) 0 65px,
+          #fff5d6 65px 130px
+        );
+        border-bottom: 8px solid var(--ink);
+      }
+      .finish::after {
+        content: "终点";
+        position: absolute;
+        top: 300px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font: 900 92px "Noto Sans SC", sans-serif;
+        color: #fff5d6;
+        background: var(--ink);
+        padding: 22px 0;
+      }
+      .scene3 .rabbit {
+        left: auto;
+        right: 470px;
+        bottom: 260px;
+        z-index: 20;
+        opacity: 0;
+      }
+      .exclaim {
+        position: absolute;
+        right: 780px;
+        top: 380px;
+        font: 900 110px "Noto Sans SC", sans-serif;
+        color: #fff5d6;
+        text-shadow: 6px 6px 0 var(--ink);
+        z-index: 21;
+        opacity: 0;
+      }
+      .winner {
+        left: 0;
+        bottom: 95px;
+        z-index: 4;
+        opacity: 0;
+        transform: scale(0.85);
+        transform-origin: bottom left;
+      }
+      .tape-post {
+        position: absolute;
+        bottom: 130px;
+        width: 16px;
+        height: 230px;
+        background: #a76f4d;
+        border: 7px solid var(--ink);
+        border-radius: 10px;
+        z-index: 7;
+      }
+      .tape-post.tl {
+        left: 1290px;
+      }
+      .tape-post.tr {
+        left: 1402px;
+      }
+      .tape {
+        position: absolute;
+        left: 1298px;
+        top: 820px;
+        width: 110px;
+        height: 44px;
+        background: #fff5d6;
+        border: 8px solid var(--ink);
+        border-radius: 12px;
+        z-index: 8;
+        transform-origin: left center;
+      }
+      .confetti {
+        position: absolute;
+        top: -50px;
+        width: 18px;
+        height: 34px;
+        z-index: 30;
+      }
+      .confetti.c1 {
+        background: var(--gold);
+        border: 6px solid var(--ink);
+        border-radius: 4px;
+      }
+      .confetti.c2 {
+        background: var(--teal);
+        border: 6px solid var(--ink);
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+      }
+      .confetti.c3 {
+        background: #fff5d6;
+        border: 6px solid var(--ink);
+        border-radius: 4px;
+        width: 24px;
+        height: 16px;
+      }
+      .confetti.c4 {
+        background: var(--pink);
+        border: 6px solid var(--ink);
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+      }
+      .confetti.c5 {
+        background: var(--green);
+        border: 6px solid var(--ink);
+        border-radius: 4px;
+        width: 20px;
+        height: 30px;
+      }
+      .sparkle {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: var(--gold);
+        border: 5px solid var(--ink);
+        transform: rotate(45deg);
+        border-radius: 3px;
+        z-index: 13;
+        opacity: 0;
+      }
+      .sparkle.s1 {
+        left: 1080px;
+        top: 150px;
+      }
+      .sparkle.s2 {
+        left: 1470px;
+        top: 190px;
+      }
+      .sparkle.s3 {
+        left: 1310px;
+        top: 80px;
+      }
+      .sparkle.s4 {
+        left: 1250px;
+        top: 500px;
       }
       .moral {
         font-size: 122px;
@@ -422,8 +944,8 @@
       }
       .medal {
         position: absolute;
-        right: 490px;
-        bottom: 130px;
+        right: 500px;
+        bottom: 620px;
         width: 260px;
         height: 260px;
         background: var(--gold);
@@ -433,6 +955,7 @@
         place-items: center;
         font-size: 120px;
         box-shadow: 18px 18px 0 var(--teal);
+        z-index: 12;
       }
       .wipe {
         position: absolute;
@@ -461,9 +984,19 @@
       >
         <div class="sky"></div>
         <div class="sun"></div>
+        <div class="cloud a" data-layout-ignore></div>
+        <div class="cloud b" data-layout-ignore></div>
+        <div class="cloud c" data-layout-ignore></div>
+        <div class="bird a" data-layout-ignore></div>
+        <div class="bird b" data-layout-ignore></div>
         <div class="hill h1" data-layout-ignore></div>
         <div class="hill h2" data-layout-ignore></div>
         <div class="track" data-layout-ignore></div>
+        <div class="startline" data-layout-ignore></div>
+        <div class="gantry" data-layout-ignore>
+          <div class="g-pole"></div>
+          <div class="g-pennant"></div>
+        </div>
         <div class="scene-content">
           <div>
             <div class="title-tag">A BRIGHT STORY · 02</div>
@@ -484,10 +1017,17 @@
         </div>
         <div class="turtle">
           <div class="shell"></div>
+          <div class="tt-tail"></div>
           <div class="tt-head"><div class="tt-eye"></div></div>
           <div class="leg a"></div>
           <div class="leg b"></div>
         </div>
+        <div class="bush b1" data-layout-ignore></div>
+        <div class="bush b2" data-layout-ignore></div>
+        <div class="bush b3" data-layout-ignore></div>
+        <div class="flower f1" data-layout-ignore></div>
+        <div class="flower f2" data-layout-ignore></div>
+        <div class="flower f3" data-layout-ignore></div>
       </section>
       <div
         id="w1"
@@ -503,6 +1043,11 @@
         data-duration="7.5"
         data-track-index="2"
       >
+        <div class="sky2" data-layout-ignore></div>
+        <div class="hill-back" data-layout-ignore></div>
+        <div class="sun" data-layout-ignore></div>
+        <div class="cloud a" data-layout-ignore></div>
+        <div class="cloud b" data-layout-ignore></div>
         <div class="scene-content">
           <div>
             <div class="title-tag">HALFWAY · 林间小憩</div>
@@ -514,6 +1059,8 @@
           <div class="trunk"></div>
           <div class="crown"></div>
         </div>
+        <div class="leaf l1" data-layout-ignore></div>
+        <div class="leaf l2" data-layout-ignore></div>
         <div class="zzz">Z Z Z</div>
         <div class="rabbit">
           <div class="rb-body"><div class="tail"></div></div>
@@ -525,11 +1072,21 @@
         </div>
         <div class="turtle">
           <div class="shell"></div>
+          <div class="tt-tail"></div>
           <div class="tt-head"><div class="tt-eye"></div></div>
           <div class="leg a"></div>
           <div class="leg b"></div>
         </div>
         <div class="milestones"></div>
+        <div class="post p1" data-layout-ignore></div>
+        <div class="post p2" data-layout-ignore></div>
+        <div class="post p3" data-layout-ignore></div>
+        <div class="post p4" data-layout-ignore></div>
+        <div class="grass g1" data-layout-ignore></div>
+        <div class="grass g2" data-layout-ignore></div>
+        <div class="grass g3" data-layout-ignore></div>
+        <div class="grass g4" data-layout-ignore></div>
+        <div class="grass g5" data-layout-ignore></div>
       </section>
       <div
         id="w2"
@@ -546,12 +1103,49 @@
         data-track-index="3"
       >
         <div class="finish" data-layout-ignore></div>
+        <div class="tape-post tl" data-layout-ignore></div>
+        <div class="tape-post tr" data-layout-ignore></div>
+        <div class="tape" data-layout-ignore></div>
         <div class="scene-content">
           <div class="title-tag" style="color: #f2bd4b">STEADY WINS</div>
           <h2 class="moral">不怕走得慢<br />就怕停下来</h2>
           <p class="sub">坚持把每一个小步走完，终点自然会来到脚下。</p>
         </div>
         <div class="medal">恒</div>
+        <div class="rabbit">
+          <div class="rb-body"><div class="tail"></div></div>
+          <div class="rb-head">
+            <div class="ear a"></div>
+            <div class="ear b"></div>
+            <div class="rb-eye"></div>
+          </div>
+        </div>
+        <div class="exclaim" data-layout-ignore>!</div>
+        <div class="turtle winner">
+          <div class="shell"></div>
+          <div class="tt-tail"></div>
+          <div class="tt-head"><div class="tt-eye"></div></div>
+          <div class="leg a"></div>
+          <div class="leg b"></div>
+        </div>
+        <div class="sparkle s1" data-layout-ignore></div>
+        <div class="sparkle s2" data-layout-ignore></div>
+        <div class="sparkle s3" data-layout-ignore></div>
+        <div class="sparkle s4" data-layout-ignore></div>
+        <div class="confetti c1" style="left: 320px" data-layout-ignore></div>
+        <div class="confetti c2" style="left: 520px; top: -30px" data-layout-ignore></div>
+        <div class="confetti c3" style="left: 700px" data-layout-ignore></div>
+        <div class="confetti c4" style="left: 900px; top: -20px" data-layout-ignore></div>
+        <div class="confetti c5" style="left: 1060px" data-layout-ignore></div>
+        <div class="confetti c1" style="left: 1250px; top: -40px" data-layout-ignore></div>
+        <div class="confetti c3" style="left: 1400px" data-layout-ignore></div>
+        <div class="confetti c2" style="left: 1520px; top: -25px" data-layout-ignore></div>
+        <div class="confetti c4" style="left: 1660px" data-layout-ignore></div>
+        <div class="confetti c5" style="left: 240px; top: -35px" data-layout-ignore></div>
+        <div class="confetti c1" style="left: 420px" data-layout-ignore></div>
+        <div class="confetti c3" style="left: 600px; top: -15px" data-layout-ignore></div>
+        <div class="confetti c2" style="left: 800px" data-layout-ignore></div>
+        <div class="confetti c4" style="left: 1130px; top: -10px" data-layout-ignore></div>
       </section>
     </div>
     <script>
@@ -638,6 +1232,88 @@
             ease: "power4.out",
           },
           1.3,
+        )
+        .from(
+          "#s1 .gantry",
+          {
+            scaleY: 0,
+            transformOrigin: "bottom",
+            opacity: 0,
+            duration: 0.5,
+            ease: "back.out(1.6)",
+          },
+          0.7,
+        )
+        .from(
+          "#s1 .startline",
+          {
+            scaleX: 0,
+            transformOrigin: "left",
+            opacity: 0,
+            duration: 0.45,
+            ease: "expo.out",
+          },
+          1.0,
+        )
+        .from(
+          "#s1 .bush, #s1 .flower",
+          {
+            scale: 0,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.09,
+            ease: "back.out(2)",
+          },
+          1.4,
+        )
+        .from(
+          "#s1 .cloud",
+          { x: -50, opacity: 0, duration: 0.9, stagger: 0.15, ease: "sine.out" },
+          0.5,
+        )
+        .to(
+          "#s1 .cloud",
+          {
+            x: "+=36",
+            duration: 3.4,
+            yoyo: true,
+            repeat: 1,
+            ease: "sine.inOut",
+          },
+          1.8,
+        )
+        .fromTo(
+          "#s1 .bird",
+          { x: -140, opacity: 0 },
+          { x: 1900, opacity: 1, duration: 2.8, ease: "power1.inOut" },
+          1.6,
+        )
+        .fromTo(
+          "#s1 .bird.b",
+          { x: -140, opacity: 0 },
+          { x: 1900, opacity: 0.9, duration: 2.5, ease: "power1.inOut" },
+          2.0,
+        )
+        .fromTo(
+          "#s1 .speed",
+          {
+            opacity: 0.45,
+            scaleX: 0.85,
+          },
+          {
+            opacity: 1,
+            scaleX: 1.5,
+            duration: 0.45,
+            yoyo: true,
+            repeat: 2,
+            ease: "sine.inOut",
+          },
+          2.5,
+        )
+        .to(
+          "#s1 .speed",
+          { opacity: 0, scaleX: 0.6, duration: 0.35 },
+          4.55,
         )
         .to(
           "#s1 .rabbit",
@@ -729,6 +1405,74 @@
           },
           7.4,
         )
+        .from(
+          "#s2 .hill-back",
+          { y: 70, opacity: 0, duration: 0.7, ease: "power2.out" },
+          6.4,
+        )
+        .from(
+          "#s2 .sun",
+          { scale: 0.5, opacity: 0, duration: 0.6, ease: "back.out(1.5)" },
+          6.55,
+        )
+        .to(
+          "#s2 .sun",
+          { y: 46, duration: 5.5, ease: "sine.inOut" },
+          7.5,
+        )
+        .from(
+          "#s2 .cloud",
+          { x: -60, opacity: 0, duration: 0.8, stagger: 0.15, ease: "sine.out" },
+          6.5,
+        )
+        .to(
+          "#s2 .cloud",
+          {
+            x: "+=30",
+            duration: 3.6,
+            yoyo: true,
+            repeat: 1,
+            ease: "sine.inOut",
+          },
+          8.2,
+        )
+        .from(
+          "#s2 .grass",
+          {
+            scaleY: 0,
+            transformOrigin: "bottom",
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "back.out(1.8)",
+          },
+          6.7,
+        )
+        .from(
+          "#s2 .post",
+          {
+            scaleY: 0,
+            transformOrigin: "bottom",
+            opacity: 0,
+            duration: 0.45,
+            stagger: 0.09,
+            ease: "back.out(1.6)",
+          },
+          7.5,
+        )
+        .fromTo(
+          "#s2 .leaf",
+          { rotation: -30, x: -14 },
+          {
+            rotation: 26,
+            x: 20,
+            duration: 2.4,
+            yoyo: true,
+            repeat: 2,
+            ease: "sine.inOut",
+          },
+          8.5,
+        )
         .to(
           "#s2 .zzz",
           {
@@ -789,16 +1533,156 @@
           },
           14,
         )
+        .fromTo(
+          "#s3 .rabbit",
+          { scale: 0.3, y: 46, opacity: 0 },
+          {
+            scale: 1,
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            ease: "back.out(1.8)",
+          },
+          14.2,
+        )
+        .to(
+          "#s3 .rabbit .ear",
+          {
+            rotation: "+=16",
+            duration: 0.25,
+            yoyo: true,
+            repeat: 3,
+            ease: "sine.inOut",
+          },
+          14.5,
+        )
+        .fromTo(
+          "#s3 .exclaim",
+          { scale: 0, rotation: -18, opacity: 0 },
+          {
+            scale: 1,
+            rotation: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: "back.out(2.2)",
+          },
+          14.5,
+        )
+        .to(
+          "#s3 .exclaim",
+          { y: -40, opacity: 0, duration: 0.5, ease: "power1.in" },
+          15.3,
+        )
+        .fromTo(
+          "#s3 .winner",
+          { x: -460, opacity: 0 },
+          { x: 1239, opacity: 1, duration: 3.35, ease: "none" },
+          14.4,
+        )
+        .to(
+          "#s3 .winner",
+          {
+            y: -10,
+            duration: 0.3,
+            yoyo: true,
+            repeat: 8,
+            ease: "sine.inOut",
+          },
+          14.4,
+        )
+        .to(
+          "#s3 .tape",
+          {
+            scaleX: 0.12,
+            rotation: -6,
+            opacity: 0.4,
+            duration: 0.25,
+            ease: "power4.in",
+          },
+          17.75,
+        )
+        .to(
+          "#s3 .confetti",
+          {
+            y: 1180,
+            rotation: "+=560",
+            duration: 1.9,
+            stagger: 0.06,
+            ease: "power1.in",
+          },
+          17.75,
+        )
+        .to(
+          "#s3 .medal",
+          { scale: 1.18, rotation: 14, duration: 0.35, ease: "back.out(2.6)" },
+          17.75,
+        )
+        .to(
+          "#s3 .medal",
+          { scale: 1, rotation: 8, duration: 0.4, ease: "sine.out" },
+          18.15,
+        )
         .to(
           "#s3 .medal",
           {
             rotation: 8,
-            duration: 1.1,
+            duration: 0.9,
             yoyo: true,
-            repeat: 2,
+            repeat: 1,
             ease: "sine.inOut",
           },
-          15,
+          18.6,
+        )
+        .fromTo(
+          "#s3 .sparkle",
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.35,
+            stagger: 0.08,
+            ease: "back.out(2)",
+          },
+          15.2,
+        )
+        .to(
+          "#s3 .sparkle",
+          {
+            scale: 0.2,
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: "power1.in",
+          },
+          15.9,
+        )
+        .fromTo(
+          "#s3 .sparkle",
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.35,
+            stagger: 0.08,
+            ease: "back.out(2)",
+          },
+          16.6,
+        )
+        .to(
+          "#s3 .sparkle",
+          { scale: 0, opacity: 0, duration: 0.4 },
+          21.4,
+        )
+        .to(
+          "#s3 .moral",
+          {
+            scale: 1.045,
+            duration: 0.5,
+            yoyo: true,
+            repeat: 1,
+            ease: "sine.inOut",
+          },
+          19.8,
         )
         .to("#s3", { opacity: 0, duration: 0.7, ease: "power2.in" }, 22.3);
       window.__timelines["turtle-rabbit"] = tl;
