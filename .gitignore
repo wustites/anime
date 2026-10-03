@@ -2,6 +2,6 @@
 renders/
 node_modules/
 audio/
-*.py
-!gen_audio.py
-!mix_audio.py
+__pycache__/
+*.py[cod]
+.venv/

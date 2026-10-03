@@ -48,6 +48,10 @@ jobs:
       - name: Install edge-tts
         run: pip install edge-tts
 
+      - name: Test audio pipeline
+        if: ${{ endsWith(github.ref_name, format('-{0}', matrix.tag-suffix)) }}
+        run: python -m unittest discover -s tests -v
+
       # job-level `if` is evaluated BEFORE the strategy matrix is applied,
       # so matrix.tag-suffix is unavailable there; filter per-project inside
       # steps instead (evaluated after matrix expansion).

@@ -1,129 +1,98 @@
-"""
-Mix edge-tts audio files into the rendered video for a project.
-Each cue is (filename, start_seconds). Cue times are aligned to the
-composition timeline so narration never overlaps and never overruns
-the video duration. Run with the project name as the first argument.
-"""
-import subprocess
+"""Mix complete narration into a rendered video, bounded by cue/video duration."""
+
+import argparse
 import os
-import glob
+from pathlib import Path
+import subprocess
 import sys
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+from audio_common import load_narration, probe_duration, require_tools, temporary_output
 
-# Cues: (audio basename, start_seconds)
-CUES = {
-    "crow-water": [
-        ("crow_title", 0.3),
-        ("crow_find", 2.2),
-        ("crow_idea", 6.4),
-        ("crow_drop1", 8.3),
-        ("crow_water_up", 10.7),
-        ("crow_moral", 13.3),
-    ],
-    "turtle-rabbit": [
-        ("turtle_title", 0.3),
-        ("turtle_start", 2.2),
-        ("turtle_rabbit_fast", 4.1),
-        ("turtle_sleep", 7.2),
-        ("turtle_tortoise_walk", 10.4),
-        ("turtle_wakeup", 14.2),
-        ("turtle_win", 17.7),
-        ("turtle_moral", 19.8),
-    ],
-    "foolish-move-mountain": [
-        ("foolish_title", 0.5),
-        ("foolish_obstacle", 2.5),
-        ("foolish_pick", 8.2),
-        ("foolish_persist", 11.3),
-        ("foolish_moral", 18.2),
-    ],
-}
+BASE = Path(__file__).resolve().parent
 
 
-def main():
-    project = sys.argv[1] if len(sys.argv) > 1 else None
-    projects = CUES if project is None else [project]
+def mix(project, *, base=BASE, cues=None, video=None):
+    if cues is None:
+        cues = load_narration()[project]
+    audio_dir = base / project / "audio"
+    if video is None:
+        # Ignore temporary and legacy intermediate outputs from interrupted runs.
+        videos = [path for path in (base / project / "renders").glob("*.mp4")
+                  if not path.name.startswith(".") and not path.stem.endswith("_voiced")]
+        if not videos:
+            raise FileNotFoundError(f"{project}: no rendered MP4 found")
+        video = max(videos, key=lambda path: (path.stat().st_mtime_ns, path.name))
+    video = Path(video)
+    missing = [audio_dir / f"{cue['name']}.mp3" for cue in cues
+               if not (audio_dir / f"{cue['name']}.mp3").is_file()]
+    if missing:
+        raise FileNotFoundError("Missing narration: " + ", ".join(map(str, missing)))
+    duration = probe_duration(video, video=True)
+    if cues[-1]["start"] >= duration:
+        raise ValueError(f"{project}: narration starts beyond video duration ({duration}s)")
 
-    for proj in projects:
-        print(f"\n=== {proj} ===")
-        mix(proj)
-
-
-def mix(project):
-    if project not in CUES:
-        print(f"Unknown project: {project}")
-        return
-
-    render_dir = os.path.join(BASE, project, "renders")
-    audio_dir = os.path.join(BASE, project, "audio")
-
-    mp4s = glob.glob(os.path.join(render_dir, "*.mp4"))
-    if not mp4s:
-        print("  No rendered MP4 found!")
-        return
-    video_path = max(mp4s, key=os.path.getmtime)
-    print(f"  Video: {video_path}")
-
-    dur_str = subprocess.check_output([
-        "ffprobe", "-v", "error", "-show_entries", "format=duration",
-        "-of", "default=noprint_wrappers=1:nokey=1", video_path
-    ]).decode().strip()
-    video_dur = float(dur_str)
-    print(f"  Video duration: {video_dur}s")
-
-    # Build ffmpeg command: a silent base track the length of the video,
-    # then each voice clip delayed to its cue time on top.
-    inputs = ["-i", video_path]
-    filter_parts = []
-
-    for fname, start_sec in CUES[project]:
-        audio_file = os.path.join(audio_dir, f"{fname}.mp3")
-        if not os.path.exists(audio_file):
-            print(f"  SKIP missing: {audio_file}")
-            continue
-        idx = len(inputs) // 2  # next input index
-        inputs.extend(["-i", audio_file])
-        delay_ms = int(start_sec * 1000)
-        filter_parts.append(f"[{idx}:a]adelay={delay_ms}:all=1[a{idx}]")
-        print(f"  {fname}: delay={delay_ms}ms")
-
-    if not filter_parts:
-        print("  No audio files to mix!")
-        return
-
-    audio_count = len(filter_parts)
-
-    # With normalize=1, amix scales active inputs; including the silent base
-    # halves each voice, so volume=2 restores unity.
-    amix_inputs = "".join(f"[a{i+1}]" for i in range(audio_count))
-    filter_expr = (
-        f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={video_dur}[silence];"
-        + ";".join(filter_parts) + ";"
-        + f"[silence]{amix_inputs}amix=inputs={audio_count + 1}:duration=longest:dropout_transition=0,volume=2[outa]"
+    inputs = ["-i", str(video)]
+    filters = []
+    for index, cue in enumerate(cues, start=1):
+        audio = audio_dir / f"{cue['name']}.mp3"
+        end = cues[index]["start"] if index < len(cues) else duration
+        window = end - cue["start"]
+        audio_duration = probe_duration(audio)
+        if audio_duration > window:
+            print(f"  Trimming {cue['name']}: {audio_duration:.2f}s to {window:.2f}s")
+        inputs.extend(["-i", str(audio)])
+        delay = round(cue["start"] * 1000)
+        filters.append(
+            f"[{index}:a]atrim=duration={window:.6f},asetpts=PTS-STARTPTS,"
+            f"adelay={delay}:all=1[a{index}]"
+        )
+    # Delays produce silence too. Disable normalization to preserve voice gain
+    # regardless of how many pending or completed cues are in the mix.
+    labels = "".join(f"[a{index}]" for index in range(1, len(cues) + 1))
+    filters.append(
+        f"{labels}amix=inputs={len(cues)}:duration=longest:normalize=0,"
+        f"apad,atrim=duration={duration:.6f}[outa]"
     )
-
-    output_path = video_path.replace(".mp4", "_voiced.mp4")
-
-    cmd = [
-        "ffmpeg", "-y", "-v", "error",
-        *inputs,
-        "-filter_complex", filter_expr,
-        "-map", "0:v",
-        "-map", "[outa]",
-        "-c:v", "copy",
-        "-c:a", "aac",
-        output_path
-    ]
-
-    print(f"  Mixing {audio_count} audio tracks...")
-    result = subprocess.run(cmd, capture_output=True)
-    if result.returncode != 0:
-        print(f"  FFmpeg error:\n{result.stderr.decode()[-500:]}")
-        return
-
-    os.replace(output_path, video_path)
-    print(f"  Done! Output: {video_path}")
+    temporary = temporary_output(video)
+    try:
+        subprocess.run([
+            "ffmpeg", "-y", "-v", "error", *inputs,
+            "-filter_complex", ";".join(filters),
+            "-map", "0:v:0", "-map", "[outa]", "-c:v", "copy",
+            "-c:a", "aac", "-ar", "44100", "-ac", "2",
+            "-t", str(duration), str(temporary),
+        ], check=True, capture_output=True, text=True, timeout=300)
+        probe_duration(temporary, video=True)
+        os.replace(temporary, video)
+    finally:
+        temporary.unlink(missing_ok=True)
+    print(f"  Done! Output: {video}")
+    return video
 
 
-main()
+def main(argv=None):
+    projects = load_narration()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("project", nargs="?", choices=projects, help="Omit to mix all projects")
+    parser.add_argument("--video", type=Path, help="Use this rendered MP4 instead of the latest")
+    args = parser.parse_args(argv)
+    if args.video and not args.project:
+        parser.error("--video requires a project")
+    try:
+        require_tools()
+    except RuntimeError as error:
+        print(f"ERROR: {error}", file=sys.stderr)
+        return 1
+    failed = False
+    for project in [args.project] if args.project else projects:
+        try:
+            mix(project, cues=projects[project], video=args.video)
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            detail = error.stderr if isinstance(error, subprocess.CalledProcessError) else str(error)
+            print(f"ERROR: {project}: {detail}", file=sys.stderr)
+            failed = True
+    return int(failed)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

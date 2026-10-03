@@ -1,0 +1,103 @@
+{
+  "crow-water": [
+    {
+      "name": "crow_title",
+      "text": "乌鸦喝水",
+      "start": 0.3
+    },
+    {
+      "name": "crow_find",
+      "text": "瓶子里面有水，但水太少了，喝不到",
+      "start": 2.2
+    },
+    {
+      "name": "crow_idea",
+      "text": "有办法了！",
+      "start": 6.4
+    },
+    {
+      "name": "crow_drop1",
+      "text": "一颗一颗地往里扔",
+      "start": 8.3
+    },
+    {
+      "name": "crow_water_up",
+      "text": "水慢慢升上来了",
+      "start": 10.7
+    },
+    {
+      "name": "crow_moral",
+      "text": "遇事要善于动脑筋想办法",
+      "start": 13.3
+    }
+  ],
+  "turtle-rabbit": [
+    {
+      "name": "turtle_title",
+      "text": "龟兔赛跑",
+      "start": 0.3
+    },
+    {
+      "name": "turtle_start",
+      "text": "比赛开始了！",
+      "start": 2.2
+    },
+    {
+      "name": "turtle_rabbit_fast",
+      "text": "兔子一马当先，跑得飞快",
+      "start": 4.1
+    },
+    {
+      "name": "turtle_sleep",
+      "text": "这乌龟太慢了，我先睡一觉",
+      "start": 7.2
+    },
+    {
+      "name": "turtle_tortoise_walk",
+      "text": "乌龟一步一步，坚持不懈地向前爬",
+      "start": 10.4
+    },
+    {
+      "name": "turtle_wakeup",
+      "text": "兔子醒来，发现乌龟快到终点了！",
+      "start": 14.2
+    },
+    {
+      "name": "turtle_win",
+      "text": "乌龟赢了！",
+      "start": 17.7
+    },
+    {
+      "name": "turtle_moral",
+      "text": "骄兵必败，持之以恒",
+      "start": 19.8
+    }
+  ],
+  "foolish-move-mountain": [
+    {
+      "name": "foolish_title",
+      "text": "愚公移山",
+      "start": 0.5
+    },
+    {
+      "name": "foolish_obstacle",
+      "text": "两座大山挡在家门前，怎么出门呢",
+      "start": 2.5
+    },
+    {
+      "name": "foolish_pick",
+      "text": "老人拿起锄头，挖了起来",
+      "start": 8.2
+    },
+    {
+      "name": "foolish_persist",
+      "text": "我挖不完，还有儿孙；子子孙孙，总有一天能把路打开",
+      "start": 11.3
+    },
+    {
+      "name": "foolish_moral",
+      "text": "只要坚持，就没有搬不动的山",
+      "start": 18.2
+    }
+  ]
+}
