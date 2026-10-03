@@ -1,0 +1,47 @@
+{
+  "duration": 23,
+  "assertions": [
+    {
+      "kind": "appearsBy",
+      "selector": "#s1 h1",
+      "bySec": 1.2
+    },
+    {
+      "kind": "appearsBy",
+      "selector": "#s4 h1",
+      "bySec": 20
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-0"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-1"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-2"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-3"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-4"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-5"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-6"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-7"
+    }
+  ]
+}

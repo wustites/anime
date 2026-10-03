@@ -1,819 +1,201 @@
 <!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920,height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <style>
-      @font-face {
-        font-family: "Noto Sans SC";
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("https://fonts.gstatic.com/s/notosanssc/v40/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG3bCnYw.ttf")
-          format("truetype");
-      }
-      @font-face {
-        font-family: "Noto Serif SC";
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7SCqyWv.ttf")
-          format("truetype");
-      }
-      @font-face {
-        font-family: "Noto Serif SC";
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv.ttf")
-          format("truetype");
-      }
-      @font-face {
-        font-family: "Noto Serif SC";
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("https://fonts.gstatic.com/s/notoserifsc/v35/H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7QrrCWv.ttf")
-          format("truetype");
-      }
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=1920,height=1080"><title>乌鸦喝水 · 动态绘本</title>
+<script src="assets/gsap.min.js"></script><style>
+@font-face {font-family: Story; src: url("assets/story.woff2") format("woff2"); font-weight: 700 900; font-display: block;}
+@font-face {font-family: Story; src: url("assets/story-regular.woff2") format("woff2"); font-weight: 100 600; font-display: block;}
+* {box-sizing: border-box} html, body {margin:0;width:100%;height:100%;overflow:hidden;background:#f4e5cb}
+body {font-family:Story,serif;color:#493b36} #book {width:100%;height:100%;position:relative;overflow:hidden}
+.scene,.shot {position:absolute;inset:0;overflow:hidden;margin:0} .scene {background:#f4e5cb}
+.world {display:block;width:100%;height:100%;overflow:visible;font-family:Story,serif}
+.chapter {position:absolute;left:106px;top:74px;display:flex;align-items:center;gap:21px;font-size:25px;letter-spacing:3px;color:#635744;margin:0}
+.chapter-number {font-size:22px;border:2px solid #a68b6d;width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
+.copy {position:absolute;left:106px;top:164px;max-width:1020px;pointer-events:none}
+h1 {margin:0;font-size:112px;line-height:1.24;letter-spacing:6px;font-weight:900;white-space:pre-line;color:#493b36}
+.subtitle {margin:24px 0 0;font-size:32px;line-height:1.7;max-width:780px;color:#493b36}
+#s4 .copy {top:169px;max-width:1320px} #s4 h1 {font-size:87px;line-height:1.35} #s4 .subtitle {font-size:30px;max-width:1020px}
+#s4 .chapter {color:#635744} .seal {position:absolute;left:107px;top:540px;width:93px;height:93px;border:4px solid #b85f45;border-radius:16px;color:#a7533d;background:#fff4db;display:grid;place-items:center;font-size:58px}
+.caption {position:absolute;bottom:65px;left:50%;width:1580px;margin-left:-790px;text-align:center;font-size:36px;line-height:1.4;color:#493b36;pointer-events:none}
+.caption span {display:inline-block;padding:13px 34px;background:#fff4db;border-radius:15px;box-shadow:0 3px 0 #d7b997}
+.paper {position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.2'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+.frame {position:absolute;inset:24px;border:2px solid #bca380;opacity:.5;pointer-events:none;z-index:70;border-radius:5px}
+</style></head><body>
+<div id="book" data-composition-id="crow-water" data-start="0" data-width="1920" data-height="1080" data-duration="18">
+<section id="s1" class="scene clip" data-start="0" data-duration="2.00" data-track-index="1">
+      <figure class="shot"><svg class="world" data-layout-allow-overflow viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="中国寓言 · 聪明的小办法" role="img"><rect width="1920" height="1080" fill="#f4e5cb"/><ellipse class="sun" cx="1490" cy="225" rx="115" ry="115" fill="#edb861" stroke="none" stroke-width="4"/><ellipse class="" cx="1490" cy="225" rx="155" ry="155" fill="none" stroke="#f1cd8e" stroke-width="25"/><g transform="translate(220 175) scale(1.5)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1140 130) scale(0.9)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1650 350) scale(0.75)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="distant" d="M0 640 Q240 435 610 625 Q1030 340 1390 605 Q1720 420 1920 615 V1080 H0Z" fill="#9eb6a0" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 770 Q310 561 705 732 Q1130 526 1520 720 Q1770 614 1920 737 V1080 H0Z" fill="#6f927a" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(-50 340) scale(1.1)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(260 370) scale(0.75)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1450 400) scale(0.9)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1720 315) scale(1.15)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 850 Q540 702 1050 820 Q1540 705 1920 815 V1080 H0Z" fill="#d8c397" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 938 Q750 825 1920 911" fill="none" stroke="#ead6ad" stroke-width="95" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(70 875) scale(0.65)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(320 940) scale(0.85)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1610 887) scale(0.7)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1800 970) scale(0.95)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1380 928) scale(0.45)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(640 900) scale(1)"><g class=""><ellipse class="" cx="0" cy="0" rx="40" ry="12" fill="#9eae82" stroke="none" stroke-width="4"/><ellipse class="" cx="65" cy="12" rx="28" ry="9" fill="#bac596" stroke="none" stroke-width="4"/></g></g><g transform="translate(985 500) scale(0.85)"><g class="pot"><ellipse class="" cx="139" cy="375" rx="159" ry="23" fill="#82735b" stroke="none" stroke-width="4"/><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#c98661" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M63 188 Q42 264 75 316" fill="none" stroke="#ecc39a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M220 187 Q244 277 214 321" fill="none" stroke="#a85f47" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><defs><clipPath id="opening-glass"><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#fff" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></clipPath></defs><g clip-path="url(#opening-glass)"><path class="" d="M87 66 V151 Q43 204 56 298 Q63 319 86 324 H189 Q211 319 217 296 Q231 204 192 151 V66Z" fill="#f2d9b0" stroke="#ad7154" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 258) scale(1)"><g class="water"><rect x="52" y="0" width="173" height="300" fill="#73b7b2"/><ellipse class="" cx="137" cy="0" rx="86" ry="12" fill="#c4e6d6" stroke="#3f8783" stroke-width="3"/></g></g></g><ellipse class="" cx="138" cy="65" rx="77" ry="17" fill="#9b6046" stroke="#493b36" stroke-width="5"/><ellipse class="" cx="138" cy="60" rx="66" ry="10" fill="#efd1a4" stroke="#be805b" stroke-width="5"/><path class="" d="M83 141 H193" fill="none" stroke="#dfad78" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><ellipse class="landing-shadow" cx="1430" cy="835" rx="150" ry="22" fill="#918769" stroke="none" stroke-width="4"/><g transform="translate(1260 565) scale(1.05)"><g class="hero bird"><path class="tail" d="M222 175 L309 181 L261 211 L308 219 L224 234Z" fill="#343f47" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(134 210) scale(1)"><g class="leg leg-a"><path class="" d="M0 0 L-5 47 L-26 53 M-5 47 L17 55" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(204 210) scale(1)"><g class="leg leg-b"><path class="" d="M0 0 L2 47 L-16 57 M2 47 L25 52" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="torso" d="M74 113 Q131 69 219 116 Q269 164 230 215 Q164 258 84 202 Q38 170 74 113Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 0) scale(1)"><g class="wing"><path class="" d="M97 139 Q147 101 216 153 Q210 204 151 211 Q88 200 97 139Z" fill="#526271" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M113 168 Q163 153 201 167 M120 187 Q156 177 184 188" fill="none" stroke="#758694" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(0 0) scale(1)"><g class="head"><path class="" d="M39 47 Q54 -4 105 26 L123 9 L124 35 Q167 75 126 119 Q73 141 34 98Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M42 72 L-15 90 L43 106Z" fill="#d8a94f" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M-6 92 L40 91" fill="none" stroke="#937149" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="eye" cx="74" cy="65" rx="23" ry="25" fill="#fffaeb" stroke="none" stroke-width="4"/><ellipse class="pupil" cx="66" cy="68" rx="10" ry="12" fill="#28313a" stroke="none" stroke-width="4"/><ellipse class="" cx="63" cy="64" rx="3.5" ry="4" fill="#fff" stroke="none" stroke-width="4"/><ellipse class="" cx="53" cy="106" rx="12" ry="5" fill="#cb876b" stroke="none" stroke-width="4"/><path class="brow" d="M62 33 Q76 25 89 34" fill="none" stroke="#81909c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(75 1100) scale(1.4)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#446e5b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1860 1090) scale(1.7)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#345d51" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#345d51" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 1044 Q180 1010 340 1080 H0Z" fill="#587f60" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M1520 1080 Q1760 979 1920 1042 V1080Z" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></figure>
+      <p class="chapter"><span class="chapter-number">01</span><span>中国寓言 · 聪明的小办法</span></p>
+      <header class="copy"><h1>乌鸦喝水</h1><p class="subtitle">一只口渴的小乌鸦，发现了一个陶罐。</p></header>
+    </section><section id="s2" class="scene clip" data-start="2" data-duration="4.20" data-track-index="2">
+      <figure class="shot"><svg class="world" data-layout-allow-overflow viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="遇到难题 · 水太浅了" role="img"><rect width="1920" height="1080" fill="#f4e5cb"/><ellipse class="sun" cx="1490" cy="225" rx="115" ry="115" fill="#edb861" stroke="none" stroke-width="4"/><ellipse class="" cx="1490" cy="225" rx="155" ry="155" fill="none" stroke="#f1cd8e" stroke-width="25"/><g transform="translate(220 175) scale(1.5)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1140 130) scale(0.9)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1650 350) scale(0.75)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="distant" d="M0 640 Q240 435 610 625 Q1030 340 1390 605 Q1720 420 1920 615 V1080 H0Z" fill="#9eb6a0" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 770 Q310 561 705 732 Q1130 526 1520 720 Q1770 614 1920 737 V1080 H0Z" fill="#6f927a" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(-50 340) scale(1.1)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(260 370) scale(0.75)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1450 400) scale(0.9)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1720 315) scale(1.15)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 850 Q540 702 1050 820 Q1540 705 1920 815 V1080 H0Z" fill="#d8c397" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 938 Q750 825 1920 911" fill="none" stroke="#ead6ad" stroke-width="95" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(70 875) scale(0.65)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(320 940) scale(0.85)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1610 887) scale(0.7)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1800 970) scale(0.95)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1380 928) scale(0.45)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(640 900) scale(1)"><g class=""><ellipse class="" cx="0" cy="0" rx="40" ry="12" fill="#9eae82" stroke="none" stroke-width="4"/><ellipse class="" cx="65" cy="12" rx="28" ry="9" fill="#bac596" stroke="none" stroke-width="4"/></g></g><g transform="translate(810 358) scale(1.38)"><g class="pot"><ellipse class="" cx="139" cy="375" rx="159" ry="23" fill="#82735b" stroke="none" stroke-width="4"/><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#c98661" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M63 188 Q42 264 75 316" fill="none" stroke="#ecc39a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M220 187 Q244 277 214 321" fill="none" stroke="#a85f47" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><defs><clipPath id="problem-glass"><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#fff" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></clipPath></defs><g clip-path="url(#problem-glass)"><path class="" d="M87 66 V151 Q43 204 56 298 Q63 319 86 324 H189 Q211 319 217 296 Q231 204 192 151 V66Z" fill="#f2d9b0" stroke="#ad7154" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 258) scale(1)"><g class="water"><rect x="52" y="0" width="173" height="300" fill="#73b7b2"/><ellipse class="" cx="137" cy="0" rx="86" ry="12" fill="#c4e6d6" stroke="#3f8783" stroke-width="3"/></g></g></g><ellipse class="" cx="138" cy="65" rx="77" ry="17" fill="#9b6046" stroke="#493b36" stroke-width="5"/><ellipse class="" cx="138" cy="60" rx="66" ry="10" fill="#efd1a4" stroke="#be805b" stroke-width="5"/><path class="" d="M83 141 H193" fill="none" stroke="#dfad78" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><ellipse class="landing-shadow" cx="1430" cy="825" rx="155" ry="24" fill="#918769" stroke="none" stroke-width="4"/><g transform="translate(1215 495) scale(1.25)"><g class="hero bird"><path class="tail" d="M222 175 L309 181 L261 211 L308 219 L224 234Z" fill="#343f47" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(134 210) scale(1)"><g class="leg leg-a"><path class="" d="M0 0 L-5 47 L-26 53 M-5 47 L17 55" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(204 210) scale(1)"><g class="leg leg-b"><path class="" d="M0 0 L2 47 L-16 57 M2 47 L25 52" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="torso" d="M74 113 Q131 69 219 116 Q269 164 230 215 Q164 258 84 202 Q38 170 74 113Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 0) scale(1)"><g class="wing"><path class="" d="M97 139 Q147 101 216 153 Q210 204 151 211 Q88 200 97 139Z" fill="#526271" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M113 168 Q163 153 201 167 M120 187 Q156 177 184 188" fill="none" stroke="#758694" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(0 0) scale(1)"><g class="head"><path class="" d="M39 47 Q54 -4 105 26 L123 9 L124 35 Q167 75 126 119 Q73 141 34 98Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M42 72 L-15 90 L43 106Z" fill="#d8a94f" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M-6 92 L40 91" fill="none" stroke="#937149" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="eye" cx="74" cy="65" rx="23" ry="25" fill="#fffaeb" stroke="none" stroke-width="4"/><ellipse class="pupil" cx="66" cy="68" rx="10" ry="12" fill="#28313a" stroke="none" stroke-width="4"/><ellipse class="" cx="63" cy="64" rx="3.5" ry="4" fill="#fff" stroke="none" stroke-width="4"/><ellipse class="" cx="53" cy="106" rx="12" ry="5" fill="#cb876b" stroke="none" stroke-width="4"/><path class="brow" d="M62 33 Q76 25 89 34" fill="none" stroke="#81909c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(1210 240) scale(1)"><g class="bubble"><path class="" d="M30 0 H370 Q400 0 400 30 V90 Q400 120 370 120 H90 L45 155 L54 120 H30 Q0 120 0 90 V30 Q0 0 30 0Z" fill="#fff8e8" stroke="#c29a76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="200.0" y="73" text-anchor="middle" fill="#493b36" font-size="38" font-weight="700">就差一点点……</text></g></g><g transform="translate(1410 820) scale(1)"><g class="ground-stone"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1459 800) scale(1)"><g class="ground-stone"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1508 820) scale(1)"><g class="ground-stone"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1557 800) scale(1)"><g class="ground-stone"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1606 820) scale(1)"><g class="ground-stone"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(75 1100) scale(1.4)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#446e5b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1860 1090) scale(1.7)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#345d51" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#345d51" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 1044 Q180 1010 340 1080 H0Z" fill="#587f60" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M1520 1080 Q1760 979 1920 1042 V1080Z" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></figure>
+      <p class="chapter"><span class="chapter-number">02</span><span>遇到难题 · 水太浅了</span></p>
+      <header class="copy"></header>
+    </section><section id="s3" class="scene clip" data-start="6.2" data-duration="6.80" data-track-index="3">
+      <figure class="shot"><svg class="world" data-layout-allow-overflow viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="试试这个 · 小石子的大作用" role="img"><rect width="1920" height="1080" fill="#f4e5cb"/><ellipse class="sun" cx="1490" cy="225" rx="115" ry="115" fill="#edb861" stroke="none" stroke-width="4"/><ellipse class="" cx="1490" cy="225" rx="155" ry="155" fill="none" stroke="#f1cd8e" stroke-width="25"/><g transform="translate(220 175) scale(1.5)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1140 130) scale(0.9)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1650 350) scale(0.75)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="distant" d="M0 640 Q240 435 610 625 Q1030 340 1390 605 Q1720 420 1920 615 V1080 H0Z" fill="#9eb6a0" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 770 Q310 561 705 732 Q1130 526 1520 720 Q1770 614 1920 737 V1080 H0Z" fill="#6f927a" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(-50 340) scale(1.1)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(260 370) scale(0.75)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1450 400) scale(0.9)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1720 315) scale(1.15)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 850 Q540 702 1050 820 Q1540 705 1920 815 V1080 H0Z" fill="#d8c397" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 938 Q750 825 1920 911" fill="none" stroke="#ead6ad" stroke-width="95" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(70 875) scale(0.65)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(320 940) scale(0.85)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1610 887) scale(0.7)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1800 970) scale(0.95)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1380 928) scale(0.45)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(640 900) scale(1)"><g class=""><ellipse class="" cx="0" cy="0" rx="40" ry="12" fill="#9eae82" stroke="none" stroke-width="4"/><ellipse class="" cx="65" cy="12" rx="28" ry="9" fill="#bac596" stroke="none" stroke-width="4"/></g></g><g transform="translate(800 390) scale(1.28)"><g class="pot"><ellipse class="" cx="139" cy="375" rx="159" ry="23" fill="#82735b" stroke="none" stroke-width="4"/><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#c98661" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M63 188 Q42 264 75 316" fill="none" stroke="#ecc39a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M220 187 Q244 277 214 321" fill="none" stroke="#a85f47" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><defs><clipPath id="solution-glass"><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#fff" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></clipPath></defs><g clip-path="url(#solution-glass)"><path class="" d="M87 66 V151 Q43 204 56 298 Q63 319 86 324 H189 Q211 319 217 296 Q231 204 192 151 V66Z" fill="#f2d9b0" stroke="#ad7154" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 258) scale(1)"><g class="water"><rect x="52" y="0" width="173" height="300" fill="#73b7b2"/><ellipse class="" cx="137" cy="0" rx="86" ry="12" fill="#c4e6d6" stroke="#3f8783" stroke-width="3"/></g></g><g transform="translate(82 309) scale(1)"><g class="settled settled-0"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(118 294) scale(1)"><g class="settled settled-1"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(154 309) scale(1)"><g class="settled settled-2"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(190 294) scale(1)"><g class="settled settled-3"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g></g><ellipse class="" cx="138" cy="65" rx="77" ry="17" fill="#9b6046" stroke="#493b36" stroke-width="5"/><ellipse class="" cx="138" cy="60" rx="66" ry="10" fill="#efd1a4" stroke="#be805b" stroke-width="5"/><path class="" d="M83 141 H193" fill="none" stroke="#dfad78" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><ellipse class="landing-shadow" cx="1330" cy="835" rx="170" ry="23" fill="#918769" stroke="none" stroke-width="4"/><g transform="translate(1155 355) scale(1.4)"><g class="hero bird"><path class="tail" d="M222 175 L309 181 L261 211 L308 219 L224 234Z" fill="#343f47" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(134 210) scale(1)"><g class="leg leg-a"><path class="" d="M0 0 L-5 47 L-26 53 M-5 47 L17 55" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(204 210) scale(1)"><g class="leg leg-b"><path class="" d="M0 0 L2 47 L-16 57 M2 47 L25 52" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="torso" d="M74 113 Q131 69 219 116 Q269 164 230 215 Q164 258 84 202 Q38 170 74 113Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 0) scale(1)"><g class="wing"><path class="" d="M97 139 Q147 101 216 153 Q210 204 151 211 Q88 200 97 139Z" fill="#526271" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M113 168 Q163 153 201 167 M120 187 Q156 177 184 188" fill="none" stroke="#758694" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(0 0) scale(1)"><g class="head"><path class="" d="M39 47 Q54 -4 105 26 L123 9 L124 35 Q167 75 126 119 Q73 141 34 98Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M42 72 L-15 90 L43 106Z" fill="#d8a94f" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M-6 92 L40 91" fill="none" stroke="#937149" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="eye" cx="74" cy="65" rx="23" ry="25" fill="#fffaeb" stroke="none" stroke-width="4"/><ellipse class="pupil" cx="66" cy="68" rx="10" ry="12" fill="#28313a" stroke="none" stroke-width="4"/><ellipse class="" cx="63" cy="64" rx="3.5" ry="4" fill="#fff" stroke="none" stroke-width="4"/><ellipse class="" cx="53" cy="106" rx="12" ry="5" fill="#cb876b" stroke="none" stroke-width="4"/><path class="brow" d="M62 33 Q76 25 89 34" fill="none" stroke="#81909c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(1220 205) scale(1)"><g class="bubble"><path class="" d="M30 0 H320 Q350 0 350 30 V90 Q350 120 320 120 H90 L45 155 L54 120 H30 Q0 120 0 90 V30 Q0 0 30 0Z" fill="#fff8e8" stroke="#c29a76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="175.0" y="73" text-anchor="middle" fill="#493b36" font-size="38" font-weight="700">有办法了！</text></g></g><g transform="translate(1270 785) scale(1)"><g class="falling-stone stone-0"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1318 803) scale(1)"><g class="falling-stone stone-1"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1366 785) scale(1)"><g class="falling-stone stone-2"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1414 803) scale(1)"><g class="falling-stone stone-3"><path class="" d="M-22 2 Q-21 -16 1 -18 Q23 -20 27 3 Q19 22 -3 18 Q-24 18 -22 2Z" fill="#9b9984" stroke="#493b36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(975 521) scale(1)"><g class="splash splash-0"><path class="" d="M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z" fill="#6aa6a5" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(997 521) scale(1)"><g class="splash splash-1"><path class="" d="M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z" fill="#6aa6a5" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1019 521) scale(1)"><g class="splash splash-2"><path class="" d="M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z" fill="#6aa6a5" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1041 521) scale(1)"><g class="splash splash-3"><path class="" d="M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z" fill="#6aa6a5" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1063 521) scale(1)"><g class="splash splash-4"><path class="" d="M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z" fill="#6aa6a5" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(977 512) scale(1)"><g class=""><ellipse class="ripple" cx="0" cy="0" rx="63" ry="9" fill="none" stroke="#77b6af" stroke-width="5"/></g></g><g transform="translate(1140 465) scale(1)"><g class="sparkles"><g transform="translate(0 0) scale(1)"><g class="spark spark-0"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(110 20) scale(1)"><g class="spark spark-1"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(-90 55) scale(1)"><g class="spark spark-2"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(75 -80) scale(1)"><g class="spark spark-3"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(-85 -65) scale(1)"><g class="spark spark-4"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(75 1100) scale(1.4)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#446e5b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1860 1090) scale(1.7)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#345d51" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#345d51" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 1044 Q180 1010 340 1080 H0Z" fill="#587f60" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M1520 1080 Q1760 979 1920 1042 V1080Z" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></figure>
+      <p class="chapter"><span class="chapter-number">03</span><span>试试这个 · 小石子的大作用</span></p>
+      <header class="copy"></header>
+    </section><section id="s4" class="scene clip" data-start="13" data-duration="5.00" data-track-index="4">
+      <figure class="shot"><svg class="world" data-layout-allow-overflow viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="故事里的智慧" role="img"><rect width="1920" height="1080" fill="#f4e5cb"/><ellipse class="sun" cx="1490" cy="225" rx="115" ry="115" fill="#edb861" stroke="none" stroke-width="4"/><ellipse class="" cx="1490" cy="225" rx="155" ry="155" fill="none" stroke="#f1cd8e" stroke-width="25"/><g transform="translate(220 175) scale(1.5)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1140 130) scale(0.9)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1650 350) scale(0.75)"><g class="cloud"><path class="" d="M0 52 Q-12 14 32 18 Q48 -28 93 7 Q130 -10 155 24 Q201 13 212 52 Z" fill="#fff5df" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M27 52 H185" fill="none" stroke="#f0c8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="distant" d="M0 640 Q240 435 610 625 Q1030 340 1390 605 Q1720 420 1920 615 V1080 H0Z" fill="#9eb6a0" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 770 Q310 561 705 732 Q1130 526 1520 720 Q1770 614 1920 737 V1080 H0Z" fill="#6f927a" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(-50 340) scale(1.1)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(260 370) scale(0.75)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1450 400) scale(0.9)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1720 315) scale(1.15)"><g class="tree"><path class="" d="M100 390 L110 205 M107 286 L47 224 M110 265 L164 205" fill="none" stroke="#8e6d51" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M20 230 Q-30 174 24 122 Q1 60 68 59 Q85 1 147 23 Q193 17 199 75 Q252 90 222 148 Q267 216 204 245 Q140 277 100 237 Q52 267 20 230Z" fill="#648c6b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M49 126 Q78 104 102 119 M145 79 Q173 89 166 111 M157 193 Q189 202 201 184" fill="none" stroke="#abc28a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 850 Q540 702 1050 820 Q1540 705 1920 815 V1080 H0Z" fill="#d8c397" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M0 938 Q750 825 1920 911" fill="none" stroke="#ead6ad" stroke-width="95" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(70 875) scale(0.65)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(320 940) scale(0.85)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1610 887) scale(0.7)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1800 970) scale(0.95)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(1380 928) scale(0.45)"><g class="flower"><path class="" d="M0 30 L-2 -12 M0 17 Q22 4 20 -4 M0 24 Q-24 12 -20 3" fill="none" stroke="#67845d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="" cx="-12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-29" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="12" cy="-18" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="-7" cy="-6" rx="9" ry="10" fill="#e99673" stroke="none" stroke-width="4"/><ellipse class="" cx="0" cy="-17" rx="7" ry="7" fill="#f8ce63" stroke="none" stroke-width="4"/></g></g><g transform="translate(640 900) scale(1)"><g class=""><ellipse class="" cx="0" cy="0" rx="40" ry="12" fill="#9eae82" stroke="none" stroke-width="4"/><ellipse class="" cx="65" cy="12" rx="28" ry="9" fill="#bac596" stroke="none" stroke-width="4"/></g></g><g transform="translate(1090 500) scale(0.9)"><g class="pot"><ellipse class="" cx="139" cy="375" rx="159" ry="23" fill="#82735b" stroke="none" stroke-width="4"/><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#c98661" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M63 188 Q42 264 75 316" fill="none" stroke="#ecc39a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M220 187 Q244 277 214 321" fill="none" stroke="#a85f47" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><defs><clipPath id="ending-glass"><path class="" d="M74 66 L69 144 Q11 183 23 291 Q33 342 82 351 H192 Q240 341 250 291 Q265 183 207 144 L202 66Z" fill="#fff" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></clipPath></defs><g clip-path="url(#ending-glass)"><path class="" d="M87 66 V151 Q43 204 56 298 Q63 319 86 324 H189 Q211 319 217 296 Q231 204 192 151 V66Z" fill="#f2d9b0" stroke="#ad7154" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 99) scale(1)"><g class="water"><rect x="52" y="0" width="173" height="300" fill="#73b7b2"/><ellipse class="" cx="137" cy="0" rx="86" ry="12" fill="#c4e6d6" stroke="#3f8783" stroke-width="3"/></g></g><g transform="translate(82 309) scale(1)"><g class="settled settled-0"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(118 294) scale(1)"><g class="settled settled-1"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(154 309) scale(1)"><g class="settled settled-2"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g><g transform="translate(190 294) scale(1)"><g class="settled settled-3"><ellipse class="settled-stone" cx="0" cy="0" rx="23" ry="15" fill="#9b9984" stroke="#493b36" stroke-width="3"/></g></g></g><ellipse class="" cx="138" cy="65" rx="77" ry="17" fill="#9b6046" stroke="#493b36" stroke-width="5"/><ellipse class="" cx="138" cy="60" rx="66" ry="10" fill="#efd1a4" stroke="#be805b" stroke-width="5"/><path class="" d="M83 141 H193" fill="none" stroke="#dfad78" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><ellipse class="landing-shadow" cx="1560" cy="827" rx="135" ry="20" fill="#918769" stroke="none" stroke-width="4"/><g transform="translate(1390 575) scale(0.95)"><g class="hero bird"><path class="tail" d="M222 175 L309 181 L261 211 L308 219 L224 234Z" fill="#343f47" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(134 210) scale(1)"><g class="leg leg-a"><path class="" d="M0 0 L-5 47 L-26 53 M-5 47 L17 55" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(204 210) scale(1)"><g class="leg leg-b"><path class="" d="M0 0 L2 47 L-16 57 M2 47 L25 52" fill="none" stroke="#b47743" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="torso" d="M74 113 Q131 69 219 116 Q269 164 230 215 Q164 258 84 202 Q38 170 74 113Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 0) scale(1)"><g class="wing"><path class="" d="M97 139 Q147 101 216 153 Q210 204 151 211 Q88 200 97 139Z" fill="#526271" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M113 168 Q163 153 201 167 M120 187 Q156 177 184 188" fill="none" stroke="#758694" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(0 0) scale(1)"><g class="head"><path class="" d="M39 47 Q54 -4 105 26 L123 9 L124 35 Q167 75 126 119 Q73 141 34 98Z" fill="#35424e" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M42 72 L-15 90 L43 106Z" fill="#d8a94f" stroke="#493b36" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M-6 92 L40 91" fill="none" stroke="#937149" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse class="eye" cx="74" cy="65" rx="23" ry="25" fill="#fffaeb" stroke="none" stroke-width="4"/><ellipse class="pupil" cx="66" cy="68" rx="10" ry="12" fill="#28313a" stroke="none" stroke-width="4"/><ellipse class="" cx="63" cy="64" rx="3.5" ry="4" fill="#fff" stroke="none" stroke-width="4"/><ellipse class="" cx="53" cy="106" rx="12" ry="5" fill="#cb876b" stroke="none" stroke-width="4"/><path class="brow" d="M62 33 Q76 25 89 34" fill="none" stroke="#81909c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(1520 570) scale(1)"><g class="sparkles"><g transform="translate(0 0) scale(1)"><g class="spark spark-0"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(110 20) scale(1)"><g class="spark spark-1"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(-90 55) scale(1)"><g class="spark spark-2"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(75 -80) scale(1)"><g class="spark spark-3"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(-85 -65) scale(1)"><g class="spark spark-4"><path class="" d="M0 -20 L6 -6 L20 0 L6 6 L0 20 L-6 6 L-20 0 L-6 -6Z" fill="#f2c465" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><g transform="translate(75 1100) scale(1.4)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#446e5b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(1860 1090) scale(1.7)"><g class="plant"><path class="" d="M0 170 Q28 75 20 0 M4 135 Q-50 106 -59 65 Q-10 69 8 112 M12 97 Q62 69 79 24 Q26 24 18 68 M18 52 Q-8 31 -9 1" fill="none" stroke="#345d51" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M3 135 Q-57 132 -69 77 Q-13 86 3 135 M11 97 Q68 97 91 31 Q41 37 11 97 M18 55 Q-20 43 -22 -8 Q10 3 18 55" fill="#345d51" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><path class="" d="M0 1044 Q180 1010 340 1080 H0Z" fill="#587f60" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M1520 1080 Q1760 979 1920 1042 V1080Z" fill="#446e5b" stroke="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></figure>
+      <p class="chapter"><span class="chapter-number">04</span><span>故事里的智慧</span></p>
+      <header class="copy"><h1>肯动脑筋
+办法总比困难多</h1><p class="subtitle">小小的石子，也能一步一步改变眼前的难题。</p></header><aside class="seal">智</aside>
+    </section><div id="caption-0" class="caption clip" data-start="0.3" data-duration="1.90" data-track-index="10"><span>乌鸦喝水</span></div><div id="caption-1" class="caption clip" data-start="2.2" data-duration="4.20" data-track-index="10"><span>瓶子里面有水，但水太少了，喝不到</span></div><div id="caption-2" class="caption clip" data-start="6.4" data-duration="1.90" data-track-index="10"><span>有办法了！</span></div><div id="caption-3" class="caption clip" data-start="8.3" data-duration="2.40" data-track-index="10"><span>一颗一颗地往里扔</span></div><div id="caption-4" class="caption clip" data-start="10.7" data-duration="2.60" data-track-index="10"><span>水慢慢升上来了</span></div><div id="caption-5" class="caption clip" data-start="13.3" data-duration="4.40" data-track-index="10"><span>遇事要善于动脑筋想办法</span></div><div class="paper" data-layout-ignore></div><div class="frame" data-layout-ignore></div></div>
+<script>const STORY_ID = "crow-water";
+// Every move belongs to one paused timeline. Static SVG placement stays on
+// the parent group, while articulated parts animate in their local coordinates.
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
+const root = document.getElementById("book");
+const duration = Number(root.dataset.duration);
 
-      :root {
-        --paper: #fff5d6;
-        --ink: #2d2926;
-        --red: #e4573d;
-        --teal: #2f8f83;
-        --green: #76a85b;
-        --gold: #f2bd4b;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: var(--paper);
-      }
-      body {
-        font-family: "Noto Serif SC", serif;
-        color: var(--ink);
-      }
-      #book {
-        position: relative;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: var(--paper);
-      }
-      #book:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 90;
-        opacity: 0.22;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-        mix-blend-mode: multiply;
-      }
-      .scene {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-      }
-      .scene-content {
-        width: 100%;
-        height: 100%;
-        padding: 88px 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: relative;
-      }
-      .sky {
-        position: absolute;
-        inset: 0;
-        background: #bde4d7;
-      }
-      .sun {
-        position: absolute;
-        width: 190px;
-        height: 190px;
-        border: 8px solid var(--ink);
-        border-radius: 50%;
-        background: var(--gold);
-        right: 150px;
-        top: 92px;
-        box-shadow: 18px 18px 0 rgba(228, 87, 61, 0.25);
-      }
-      .hill {
-        position: absolute;
-        border: 8px solid var(--ink);
-        border-bottom: 0;
-        border-radius: 55% 55% 0 0;
-      }
-      .hill.back {
-        width: 1100px;
-        height: 470px;
-        left: -150px;
-        bottom: -100px;
-        background: #9bc88a;
-      }
-      .hill.front {
-        width: 1300px;
-        height: 390px;
-        right: -280px;
-        bottom: -120px;
-        background: var(--green);
-      }
-      .cloud {
-        position: absolute;
-        width: 240px;
-        height: 72px;
-        border: 7px solid var(--ink);
-        border-radius: 50px;
-        background: #fff9e8;
-      }
-      .cloud:before,
-      .cloud:after {
-        content: "";
-        position: absolute;
-        background: #fff9e8;
-        border: 7px solid var(--ink);
-        border-bottom: 0;
-        border-radius: 50% 50% 0 0;
-      }
-      .cloud:before {
-        width: 80px;
-        height: 48px;
-        left: 35px;
-        top: -49px;
-      }
-      .cloud:after {
-        width: 105px;
-        height: 64px;
-        right: 28px;
-        top: -65px;
-      }
-      .c1 {
-        left: 170px;
-        top: 155px;
-      }
-      .c2 {
-        right: 470px;
-        top: 230px;
-        transform: scale(0.7);
-      }
-      .eyebrow {
-        font:
-          900 26px "Noto Sans SC",
-          sans-serif;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--red);
-      }
-      h1 {
-        font-size: 166px;
-        line-height: 0.9;
-        margin: 12px 0;
-        letter-spacing: -0.08em;
-        max-width: 950px;
-        text-shadow: 8px 8px 0 #fff9e8;
-      }
-      .lead {
-        font-size: 42px;
-        max-width: 740px;
-        line-height: 1.35;
-      }
-      .chapter {
-        font:
-          900 22px "Noto Sans SC",
-          sans-serif;
-        border: 4px solid var(--ink);
-        border-radius: 999px;
-        padding: 12px 24px;
-        background: #fff9e8;
-        align-self: flex-start;
-      }
-      .crow {
-        position: absolute;
-        width: 290px;
-        height: 230px;
-        right: 250px;
-        bottom: 270px;
-        filter: drop-shadow(18px 20px 0 rgba(45, 41, 38, 0.14));
-      }
-      .crow .body {
-        position: absolute;
-        width: 205px;
-        height: 140px;
-        right: 0;
-        bottom: 0;
-        background: #343536;
-        border: 9px solid var(--ink);
-        border-radius: 55% 48% 45% 52%;
-        transform: rotate(7deg);
-      }
-      .crow .wing {
-        position: absolute;
-        width: 130px;
-        height: 85px;
-        right: 34px;
-        bottom: 25px;
-        background: #53595c;
-        border: 7px solid var(--ink);
-        border-radius: 65% 30% 65% 30%;
-        transform: rotate(15deg);
-      }
-      .crow .head {
-        position: absolute;
-        width: 105px;
-        height: 100px;
-        left: 20px;
-        top: 18px;
-        background: #343536;
-        border: 9px solid var(--ink);
-        border-radius: 50%;
-      }
-      .eye {
-        position: absolute;
-        width: 28px;
-        height: 28px;
-        background: #fff;
-        border: 6px solid var(--ink);
-        border-radius: 50%;
-        left: 22px;
-        top: 18px;
-      }
-      .eye:after {
-        content: "";
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: var(--ink);
-        border-radius: 50%;
-        left: 6px;
-        top: 5px;
-      }
-      .beak {
-        position: absolute;
-        width: 82px;
-        height: 38px;
-        background: var(--gold);
-        border: 8px solid var(--ink);
-        clip-path: polygon(0 50%, 100% 0, 100% 100%);
-        left: -64px;
-        top: 47px;
-      }
-      .winglines {
-        position: absolute;
-        right: 45px;
-        bottom: 42px;
-        width: 76px;
-        height: 34px;
-        border-top: 7px solid var(--gold);
-        border-bottom: 7px solid var(--gold);
-        border-radius: 50%;
-        transform: rotate(-10deg);
-      }
-      .vase {
-        position: absolute;
-        width: 280px;
-        height: 420px;
-        left: 820px;
-        bottom: 110px;
-      }
-      .neck {
-        position: absolute;
-        width: 130px;
-        height: 125px;
-        left: 75px;
-        top: 0;
-        background: #d99062;
-        border: 9px solid var(--ink);
-        border-radius: 20px 20px 0 0;
-      }
-      .pot {
-        position: absolute;
-        width: 260px;
-        height: 320px;
-        left: 10px;
-        bottom: 0;
-        background: #df9368;
-        border: 9px solid var(--ink);
-        border-radius: 45% 45% 28% 28%;
-        overflow: hidden;
-      }
-      .pot:before {
-        content: "";
-        position: absolute;
-        inset: 25px;
-        border: 4px dashed rgba(45, 41, 38, 0.35);
-        border-radius: 42%;
-      }
-      .water {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 72px;
-        background: var(--teal);
-        border-top: 7px solid var(--ink);
-      }
-      .stone {
-        position: absolute;
-        width: 36px;
-        height: 30px;
-        background: #9b7863;
-        border: 6px solid var(--ink);
-        border-radius: 48% 52% 44% 56%;
-      }
-      .stones {
-        position: absolute;
-        left: 1190px;
-        bottom: 180px;
-        width: 270px;
-        height: 130px;
-      }
-      .stones .stone:nth-child(1) {
-        left: 20px;
-        bottom: 4px;
-      }
-      .stones .stone:nth-child(2) {
-        left: 70px;
-        bottom: 15px;
-        transform: rotate(20deg);
-      }
-      .stones .stone:nth-child(3) {
-        left: 125px;
-        bottom: 0;
-      }
-      .stones .stone:nth-child(4) {
-        left: 170px;
-        bottom: 24px;
-      }
-      .drop {
-        position: absolute;
-        width: 22px;
-        height: 30px;
-        border: 6px solid var(--teal);
-        border-radius: 55% 45% 60% 40%;
-        left: 1005px;
-        top: 380px;
-      }
-      .caption {
-        position: absolute;
-        left: 120px;
-        bottom: 80px;
-        font-size: 52px;
-        background: #fff9e8;
-        border: 6px solid var(--ink);
-        padding: 20px 32px;
-        border-radius: 28px;
-        box-shadow: 10px 10px 0 var(--red);
-      }
-      .scene2 {
-        background: #f7cf73;
-      }
-      .scene2 .scene-content {
-        justify-content: center;
-        align-items: center;
-      }
-      .scene2 h2 {
-        position: absolute;
-        top: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 105px;
-        margin: 0 0 40px;
-        max-width: 980px;
-        text-align: center;
-        line-height: 1.05;
-      }
-      .ring {
-        position: absolute;
-        width: 760px;
-        height: 760px;
-        border: 10px solid var(--ink);
-        border-radius: 50%;
-        background: #fff5d6;
-        left: 580px;
-        top: 150px;
-      }
-      .scene2 .vase {
-        left: 820px;
-        bottom: 160px;
-        transform: scale(1.18);
-      }
-      .scene2 .crow {
-        right: 250px;
-        bottom: 360px;
-        transform: rotate(-8deg);
-      }
-      .pebble-fall {
-        position: absolute;
-        left: 936px;
-        top: 290px;
-      }
-      .pebble-fall .stone:nth-child(2) {
-        top: 90px;
-        left: 15px;
-      }
-      .pebble-fall .stone:nth-child(3) {
-        top: 180px;
-        left: -8px;
-      }
-      .ripple {
-        position: absolute;
-        width: 150px;
-        height: 42px;
-        border: 7px solid var(--teal);
-        border-radius: 50%;
-        left: 884px;
-        bottom: 455px;
-      }
-      .scene3 {
-        background: var(--teal);
-      }
-      .scene3 .scene-content {
-        justify-content: center;
-        align-items: flex-start;
-        padding-left: 180px;
-      }
-      .sunburst {
-        position: absolute;
-        width: 900px;
-        height: 900px;
-        border: 70px solid #fff5d6;
-        border-radius: 50%;
-        right: -180px;
-        top: 90px;
-        opacity: 0.22;
-      }
-      .moral {
-        font-size: 126px;
-        line-height: 1.08;
-        max-width: 1050px;
-        margin: 0;
-        color: #fff9e8;
-        text-shadow: 8px 8px 0 var(--ink);
-      }
-      .moral-sub {
-        font-size: 38px;
-        color: #fff5d6;
-        max-width: 850px;
-        margin-top: 42px;
-      }
-      .badge {
-        position: absolute;
-        right: 190px;
-        bottom: 150px;
-        width: 330px;
-        height: 330px;
-        background: var(--gold);
-        border: 10px solid var(--ink);
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        font-size: 150px;
-        transform: rotate(7deg);
-        box-shadow: 18px 18px 0 var(--red);
-      }
-      .page-wipe {
-        position: absolute;
-        inset: -200px;
-        background: var(--paper);
-        z-index: 60;
-        transform-origin: right center;
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      id="book"
-      data-composition-id="crow-water"
-      data-start="0"
-      data-width="1920"
-      data-height="1080"
-      data-duration="18"
-    >
-      <section
-        id="s1"
-        class="scene clip"
-        data-start="0"
-        data-duration="6.6"
-        data-track-index="1"
-      >
-        <div class="sky"></div>
-        <div class="sun"></div>
-        <div class="cloud c1"></div>
-        <div class="cloud c2"></div>
-        <div class="hill back" data-layout-ignore></div>
-        <div class="hill front" data-layout-ignore></div>
-        <div class="scene-content">
-          <div>
-            <div class="eyebrow">A BRIGHT STORY · 01</div>
-            <h1>乌鸦<br />喝水</h1>
-            <p class="lead">口渴的乌鸦，遇见一只水很浅的陶罐。</p>
-          </div>
-          <div class="chapter">翻开故事 · 寻找办法</div>
-        </div>
-        <div class="crow">
-          <div class="body"></div>
-          <div class="wing"></div>
-            <div class="winglines" data-layout-ignore></div>
-          <div class="head">
-            <div class="eye"></div>
-            <div class="beak"></div>
-          </div>
-        </div>
-      </section>
-      <div
-        id="wipe1"
-        class="page-wipe clip"
-        data-start="5.9"
-        data-duration="1"
-        data-track-index="8"
-      ></div>
-      <section
-        id="s2"
-        class="scene scene2 clip"
-        data-start="6.2"
-        data-duration="7.2"
-        data-track-index="2"
-      >
-        <div class="ring"></div>
-        <h2>一颗、两颗、三颗……</h2>
-        <div class="vase">
-          <div class="neck"></div>
-          <div class="pot"><div class="water"></div></div>
-        </div>
-        <div class="pebble-fall">
-          <i class="stone"></i><i class="stone"></i><i class="stone"></i>
-        </div>
-        <div class="ripple"></div>
-        <div class="crow">
-          <div class="body"></div>
-          <div class="wing"></div>
-          <div class="head">
-            <div class="eye"></div>
-            <div class="beak"></div>
-          </div>
-        </div>
-        <div class="caption">水面真的升高啦！</div>
-      </section>
-      <div
-        id="wipe2"
-        class="page-wipe clip"
-        data-start="12.7"
-        data-duration="1"
-        data-track-index="9"
-      ></div>
-      <section
-        id="s3"
-        class="scene scene3 clip"
-        data-start="13"
-        data-duration="5"
-        data-track-index="3"
-      >
-        <div class="sunburst" data-layout-ignore></div>
-        <div class="scene-content">
-          <div class="eyebrow" style="color: #f2bd4b">THE LITTLE IDEA</div>
-          <h2 class="moral">肯动脑筋<br />办法总比困难多</h2>
-          <p class="moral-sub">小小的石子，也能一步一步改变眼前的难题。</p>
-        </div>
-        <div class="badge">智</div>
-      </section>
-    </div>
-    <script>
-      window.__timelines = window.__timelines || {};
-      const tl = gsap.timeline({ paused: true });
-      tl.from("#s1 .sky", { opacity: 0, duration: 0.8, ease: "sine.out" }, 0.2)
-        .from(
-          "#s1 .sun",
-          {
-            scale: 0.3,
-            rotation: -35,
-            opacity: 0,
-            duration: 0.9,
-            ease: "back.out(1.6)",
-          },
-          0.25,
-        )
-        .from(
-          "#s1 .hill.back",
-          { y: 220, opacity: 0, duration: 1, ease: "power3.out" },
-          0.35,
-        )
-        .from(
-          "#s1 .hill.front",
-          { y: 260, opacity: 0, duration: 0.85, ease: "expo.out" },
-          0.55,
-        )
-        .from(
-          "#s1 .cloud",
-          {
-            x: -80,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.13,
-            ease: "power2.out",
-          },
-          0.7,
-        )
-        .from(
-          "#s1 .eyebrow",
-          { x: -60, opacity: 0, duration: 0.5, ease: "power4.out" },
-          0.8,
-        )
-        .from(
-          "#s1 h1",
-          {
-            scale: 0.72,
-            rotation: -4,
-            opacity: 0,
-            duration: 0.85,
-            ease: "back.out(1.35)",
-          },
-          0.95,
-        )
-        .from(
-          "#s1 .lead",
-          { y: 40, opacity: 0, duration: 0.65, ease: "sine.out" },
-          1.25,
-        )
-        .from(
-          "#s1 .chapter",
-          { x: -40, opacity: 0, duration: 0.45, ease: "expo.out" },
-          1.5,
-        )
-        .from(
-          "#s1 .crow",
-          {
-            x: 330,
-            y: -180,
-            rotation: 18,
-            opacity: 0,
-            duration: 1.15,
-            ease: "power3.out",
-          },
-          1.1,
-        )
-        .to(
-          "#s1 .crow",
-          {
-            y: -18,
-            rotation: -3,
-            duration: 1.4,
-            yoyo: true,
-            repeat: 2,
-            ease: "sine.inOut",
-          },
-          2.3,
-        );
-      tl.fromTo(
-        "#wipe1",
-        { scaleX: 0, rotation: -4 },
-        { scaleX: 1, rotation: 0, duration: 0.7, ease: "power3.inOut" },
-        5.9,
-      )
-        .from(
-          "#s2",
-          { x: 160, opacity: 0, duration: 0.65, ease: "power3.out" },
-          6.2,
-        )
-        .from(
-          "#s2 .ring",
-          {
-            scale: 0.45,
-            rotation: -20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "back.out(1.4)",
-          },
-          6.35,
-        )
-        .from(
-          "#s2 h2",
-          { y: -70, opacity: 0, duration: 0.7, ease: "expo.out" },
-          6.5,
-        )
-        .from(
-          "#s2 .vase",
-          { y: 240, opacity: 0, duration: 0.8, ease: "power4.out" },
-          6.65,
-        )
-        .from(
-          "#s2 .crow",
-          { x: 260, y: -100, opacity: 0, duration: 0.75, ease: "circ.out" },
-          6.8,
-        )
-        .from(
-          "#s2 .caption",
-          {
-            scale: 0.6,
-            rotation: -8,
-            opacity: 0,
-            duration: 0.6,
-            ease: "back.out(1.8)",
-          },
-          7.2,
-        )
-        .from(
-          "#s2 .pebble-fall .stone",
-          {
-            y: -260,
-            opacity: 0,
-            duration: 0.55,
-            stagger: 0.75,
-            ease: "bounce.out",
-          },
-          7.35,
-        )
-        .from(
-          "#s2 .ripple",
-          { scale: 0.2, opacity: 0, duration: 0.7, ease: "sine.out" },
-          8.05,
-        )
-        .to(
-          "#s2 .water",
-          { height: 190, duration: 4.2, ease: "sine.inOut" },
-          7.4,
-        )
-        .to(
-          "#s2 .crow .head",
-          {
-            rotation: 14,
-            duration: 0.35,
-            yoyo: true,
-            repeat: 5,
-            ease: "sine.inOut",
-          },
-          7.1,
-        );
-      tl.fromTo(
-        "#wipe2",
-        { scaleX: 0, rotation: 4 },
-        { scaleX: 1, rotation: 0, duration: 0.7, ease: "power3.inOut" },
-        12.7,
-      )
-        .from(
-          "#s3",
-          { opacity: 0, scale: 1.08, duration: 0.75, ease: "sine.out" },
-          13,
-        )
-        .from(
-          "#s3 .sunburst",
-          {
-            scale: 0.45,
-            rotation: -18,
-            opacity: 0,
-            duration: 1.1,
-            ease: "power2.out",
-          },
-          13.15,
-        )
-        .from(
-          "#s3 .eyebrow",
-          { x: -80, opacity: 0, duration: 0.55, ease: "expo.out" },
-          13.3,
-        )
-        .from(
-          "#s3 .moral",
-          { x: -120, opacity: 0, duration: 0.85, ease: "power4.out" },
-          13.45,
-        )
-        .from(
-          "#s3 .moral-sub",
-          { y: 45, opacity: 0, duration: 0.7, ease: "sine.out" },
-          13.85,
-        )
-        .from(
-          "#s3 .badge",
-          {
-            scale: 0.15,
-            rotation: -40,
-            opacity: 0,
-            duration: 0.9,
-            ease: "elastic.out(1,.55)",
-          },
-          13.65,
-        )
-        .to(
-          "#s3 .badge",
-          {
-            rotation: -5,
-            duration: 1.2,
-            yoyo: true,
-            repeat: 2,
-            ease: "sine.inOut",
-          },
-          14.6,
-        )
-        .to("#s3", { opacity: 0, duration: 0.7, ease: "power2.in" }, 17.3);
-      window.__timelines["crow-water"] = tl;
-    </script>
-  </body>
-</html>
+function move(selector, vars, at) {
+  tl.to(selector, { ...vars, immediateRender: false }, at);
+}
+function reveal(selector, at, length = 0.5) {
+  tl.fromTo(selector, { opacity: 0, y: 18 },
+    { opacity: 1, y: 0, duration: length, ease: "power2.out" }, at);
+}
+function sway(selector, angle, at, length, cycle = 1.5) {
+  tl.fromTo(selector, { rotation: -angle }, {
+    rotation: angle, duration: cycle, repeat: Math.max(0, Math.floor(length / cycle) - 1),
+    yoyo: true, ease: "sine.inOut", transformOrigin: "50% 100%",
+  }, at);
+}
+function blink(selector, at) {
+  move(selector, { scaleY: 0.09, duration: 0.09, repeat: 1,
+    yoyo: true, transformOrigin: "50% 50%", ease: "power1.inOut" }, at);
+}
+function walk(selector, at, length, stride = 0.3, strength = 12) {
+  const count = Math.max(0, Math.floor(length / stride) - 1);
+  tl.fromTo(`${selector} .leg-a`, { rotation: -strength }, {
+    rotation: strength, duration: stride, repeat: count, yoyo: true,
+    svgOrigin: "15 10", ease: "sine.inOut",
+  }, at);
+  tl.fromTo(`${selector} .leg-b`, { rotation: strength }, {
+    rotation: -strength, duration: stride, repeat: count, yoyo: true,
+    svgOrigin: "15 10", ease: "sine.inOut",
+  }, at);
+  tl.fromTo(`${selector} .torso, ${selector} .shell`, { y: 0 }, {
+    y: -5, duration: stride, repeat: count, yoyo: true, ease: "sine.inOut",
+  }, at);
+  move(`${selector} .head`, { rotation: 2, duration: stride * 2,
+    repeat: Math.max(0, Math.floor(length / (stride * 2)) - 1), yoyo: true,
+    transformOrigin: "50% 80%", ease: "sine.inOut" }, at);
+}
+
+for (const section of document.querySelectorAll(".scene")) {
+  const id = `#${section.id}`;
+  const start = Number(section.dataset.start);
+  const length = Number(section.dataset.duration);
+  // A slow camera push supplies depth without moving the reading layer.
+  tl.fromTo(`${id} .world`, { scale: 1.018, x: 0 }, {
+    scale: 1.055, x: -12, duration: length, ease: "sine.inOut",
+    transformOrigin: "50% 60%",
+  }, start);
+  reveal(`${id} .chapter`, start + 0.12);
+  const delayedMoral = STORY_ID === "foolish-move-mountain" && section.id === "s4";
+  if (!delayedMoral && section.querySelector("h1")) reveal(`${id} h1`, start + 0.25, 0.65);
+  if (!delayedMoral && section.querySelector(".subtitle")) reveal(`${id} .subtitle`, start + 0.48, 0.65);
+  move(`${id} .cloud`, { x: 45, duration: length, ease: "none" }, start);
+  move(`${id} .distant`, { x: -18, duration: length, ease: "none" }, start);
+  if (section.querySelector(".tree")) move(`${id} .tree`, { x: -30, duration: length, ease: "none" }, start);
+  move(`${id} .plant`, { x: -48, duration: length, ease: "none" }, start);
+  sway(`${id} .plant`, 2, start, length, 1.7);
+  sway(`${id} .flower`, 4, start, length, 1.2);
+  if (section.querySelector(".bubble") && !(STORY_ID === "turtle-rabbit" && section.id === "s2")) {
+    tl.fromTo(`${id} .bubble`, { opacity: 0, scale: 0.8 }, {
+      opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.3)",
+      transformOrigin: "50% 100%",
+    }, start + 0.6);
+  }
+  if (section.querySelector(".spark")) {
+    tl.fromTo(`${id} .spark`, { opacity: 0, scale: 0.2 }, {
+      opacity: 1, scale: 1, duration: 0.6, stagger: 0.1,
+      transformOrigin: "50% 50%", ease: "back.out(2)",
+    }, start + (STORY_ID === "crow-water" && section.id === "s3" ? 4.4 : 1.1));
+  }
+  if (section.querySelector(".eye")) {
+    const eyes = STORY_ID === "turtle-rabbit" && ["s2", "s3"].includes(section.id)
+      ? `${id} .tortoise .eye` : `${id} .eye`;
+    blink(eyes, start + Math.min(1.5, length - 0.4));
+    if (length > 4) blink(eyes, start + 3.7);
+  }
+}
+for (const caption of document.querySelectorAll(".caption")) {
+  tl.fromTo(`#${caption.id} span`, { opacity: 0, y: 8 }, {
+    opacity: 1, y: 0, duration: 0.16, ease: "power1.out",
+  }, Number(caption.dataset.start));
+}
+
+if (STORY_ID === "crow-water") {
+  tl.fromTo("#s1 .bird", { x: 400, y: -300, rotation: -12 }, {
+    x: 0, y: 0, rotation: 0, duration: 1.55, ease: "power2.out",
+  }, 0);
+  move("#s1 .wing", { rotation: -42, duration: 0.15, repeat: 8,
+    yoyo: true, svgOrigin: "118 150", ease: "sine.inOut" }, 0);
+  move("#s1 .landing-shadow", { scaleX: 0.7, duration: 0.7, repeat: 1,
+    yoyo: true, transformOrigin: "50% 50%" }, 0.1);
+
+  // Lean in, try to reach the low water, then pull back and look at the stones.
+  move("#s2 .bird", { x: -198, y: -200, rotation: -7, duration: 0.8 }, 2.15);
+  move("#s2 .head", { rotation: -27, duration: 0.5,
+    svgOrigin: "109 106" }, 2.7);
+  move("#s2 .wing", { rotation: -25, duration: 0.45, yoyo: true,
+    repeat: 1, svgOrigin: "118 150" }, 3.1);
+  move("#s2 .bird", { x: 0, y: 0, rotation: 0, duration: 0.65,
+    ease: "back.out(1.2)" }, 4.05);
+  move("#s2 .head", { rotation: 13, duration: 0.6,
+    svgOrigin: "109 106" }, 4.45);
+  move("#s2 .bubble", { opacity: 0, duration: 0.25 }, 5.65);
+
+  // Each stone follows ground -> beak -> jar -> water. Water rises on impact.
+  tl.set("#s3 .settled, #s3 .splash, #s3 .ripple", { opacity: 0 }, 6.2);
+  for (let i = 0; i < 4; i++) {
+    const at = 7.4 + i * 0.85;
+    const originX = 1270 + i * 48;
+    const originY = 785 + (i % 2) * 18;
+    const selector = `#s3 .stone-${i}`;
+    move("#s3 .bird", { x: originX - 1190, y: 145, duration: 0.2,
+      ease: "power2.inOut" }, at);
+    move("#s3 .head", { rotation: -55, y: 0, duration: 0.18,
+      svgOrigin: "109 106" }, at);
+    move("#s3 .bird", { x: 0, y: 0, duration: 0.25,
+      ease: "power2.out" }, at + 0.22);
+    move(selector, { x: 1145 - originX, y: 510 - originY,
+      duration: 0.25, ease: "power2.out" }, at + 0.22);
+    move("#s3 .head", { rotation: -7, y: 0, duration: 0.2,
+      svgOrigin: "109 106" }, at + 0.22);
+    move("#s3 .wing", { rotation: -35, duration: 0.12,
+      repeat: 1, yoyo: true, svgOrigin: "118 150" }, at + 0.22);
+    move(selector, { x: 977 - originX, y: 458 - originY,
+      duration: 0.22, ease: "sine.out" }, at + 0.47);
+    move(selector, { y: 649 - i * 50 - originY,
+      duration: 0.16, ease: "power2.in" }, at + 0.69);
+    move(selector, { opacity: 0, duration: 0.03 }, at + 0.85);
+    tl.set(`#s3 .settled-${i}`, { opacity: 1 }, at + 0.85);
+    move("#s3 .water", { y: -38 * (i + 1), duration: 0.22,
+      ease: "power1.out" }, at + 0.85);
+    tl.fromTo("#s3 .ripple", { opacity: 0.85, scale: 0.3 }, {
+      opacity: 0, scale: 1.3, duration: 0.45, immediateRender: false,
+      transformOrigin: "50% 50%",
+    }, at + 0.84);
+    for (let drop = 0; drop < 5; drop++) {
+      tl.fromTo(`#s3 .splash-${drop}`, { opacity: 1, x: 0, y: 0 }, {
+        opacity: 0, x: (drop - 2) * 17, y: -45 - (drop % 2) * 20,
+        duration: 0.38, ease: "power2.out", immediateRender: false,
+      }, at + 0.84);
+    }
+  }
+  move("#s3 .bubble", { opacity: 0, duration: 0.2 }, 7.35);
+  move("#s3 .bird", { x: -158, y: -65, duration: 0.55 }, 11.6);
+  move("#s3 .head", { rotation: -31, duration: 0.45,
+    svgOrigin: "109 106" }, 11.75);
+  move("#s3 .head", { rotation: -23, duration: 0.17,
+    repeat: 3, yoyo: true, svgOrigin: "109 106" }, 12.15);
+  walk("#s4 .bird", 13.2, 2, 0.28, 7);
+  move("#s4 .wing", { rotation: -32, duration: 0.32,
+    repeat: 3, yoyo: true, svgOrigin: "118 150" }, 14.2);
+  move("#s4 .bird", { y: -18, duration: 0.35,
+    repeat: 3, yoyo: true, ease: "sine.inOut" }, 14.2);
+  reveal(".seal", 13.85);
+}
+
+window.__timelines["crow-water"] = tl;</script></body></html>

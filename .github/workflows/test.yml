@@ -1,4 +1,4 @@
-name: Test audio pipeline
+name: Project checks
 
 on:
   push:
@@ -9,6 +9,21 @@ permissions:
   contents: read
 
 jobs:
+  compositions:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [crow-water, turtle-rabbit, foolish-move-mountain]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check composition
+        run: npm run check
+        working-directory: ${{ matrix.project }}
+
   test:
     runs-on: ubuntu-latest
     steps:

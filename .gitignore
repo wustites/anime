@@ -5,3 +5,5 @@ audio/
 __pycache__/
 *.py[cod]
 .venv/
+.hyperframes/
+.media/

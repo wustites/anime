@@ -20,6 +20,11 @@ npm run check     # lint, validate, and inspect the composition
 npm run render    # write the video to renders/
 ```
 
+The three stories use layered SVG scenery and articulated character animation.
+To change the shared illustrations or choreography, edit [storybook/](storybook/README.md)
+and run `python3 storybook/build.py`, then run `npm run check` in all projects.
+The runtime fonts and animation library are bundled locally.
+
 ## Narration pipeline
 
 From the repository root:
