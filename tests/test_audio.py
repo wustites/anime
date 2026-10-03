@@ -18,7 +18,23 @@ class ConfigurationTests(unittest.TestCase):
     def test_project_cues_are_valid(self):
         projects = load_narration()
         self.assertEqual(len(projects), 3)
-        self.assertEqual(sum(map(len, projects.values())), 19)
+        plans = json.loads((Path(__file__).resolve().parents[1] / 'storybook/story_plan.json').read_text())
+        for project, plan in plans.items():
+            self.assertEqual(projects[project], [cue for shot in plan['shots'] for cue in shot['cues']])
+            self.assertEqual(plan['shots'][0]['start'], 0)
+            self.assertEqual(plan['shots'][-1]['beat'], 'moral')
+            self.assertGreaterEqual(plan['duration'], 90)
+            previous_end = 0
+            for shot in plan['shots']:
+                self.assertEqual(shot['start'], previous_end)
+                self.assertLess(shot['start'], shot['end'])
+                for cue in shot['cues']:
+                    self.assertGreaterEqual(cue['start'], shot['start'])
+                    self.assertLessEqual(cue['end'], shot['end'])
+                previous_end = shot['end']
+            self.assertEqual(previous_end, plan['duration'])
+            for current, following in zip(projects[project], projects[project][1:]):
+                self.assertLess(current['end'], following['start'])
 
     def test_rejects_unsafe_names_and_invalid_times(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -33,6 +49,17 @@ class ConfigurationTests(unittest.TestCase):
             ]}))
             with self.assertRaises(ValueError):
                 load_narration(config)
+
+    def test_rejects_invalid_and_overlapping_complete_windows(self):
+        with tempfile.TemporaryDirectory() as directory:
+            config = Path(directory) / 'narration.json'
+            for end in (0, -1, True, float('nan'), float('inf'), 2):
+                config.write_text(json.dumps({'project': [
+                    {'name': 'one', 'text': 'first', 'start': .2, 'end': end},
+                    {'name': 'two', 'text': 'second', 'start': 1.2},
+                ]}))
+                with self.subTest(end=end), self.assertRaises(ValueError):
+                    load_narration(config)
 
     def test_unknown_project_and_missing_inputs_fail(self):
         with self.assertRaises(SystemExit) as error:
@@ -152,6 +179,13 @@ class MixingTests(unittest.TestCase):
         self.assertGreater(first, 0.05)
         self.assertAlmostEqual(first, second, delta=0.005)
         self.assertLess(second, 0.095)
+
+    def test_complete_narration_never_silently_truncates(self):
+        original = self.video.read_bytes()
+        self.cues[0]['end'] = 1.1
+        with self.assertRaisesRegex(ValueError, 'complete narration needs'):
+            mix('project', base=self.base, cues=self.cues)
+        self.assertEqual(self.video.read_bytes(), original)
 
     def test_failure_preserves_source_and_cleans_temporary_file(self):
         original = self.video.read_bytes()

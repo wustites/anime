@@ -57,230 +57,217 @@ function dig(selector, at, length, cycle = 0.95) {
   }
 }
 
+function fly(id, at, length, x, y) {
+  move(`${id} .bird`, { x, y, duration: length, ease: "sine.inOut" }, at);
+  move(`${id} .wing`, { rotation: -42, duration: .18, repeat: Math.max(0, Math.floor(length/.18)-1),
+    yoyo: true, svgOrigin: "118 150", ease: "sine.inOut" }, at);
+}
+function sleep(id, at, length) {
+  tl.set(`${id} .rabbit`, { rotation: -16, y: 56, svgOrigin: "148 245" }, at);
+  tl.set(`${id} .rabbit .eye`, { scaleY: .08, transformOrigin: "50% 50%" }, at);
+  move(`${id} .rabbit .torso`, { scaleY: 1.025, duration: .8,
+    repeat: Math.max(0, Math.floor(length/.8)-1), yoyo: true, transformOrigin: "50% 100%", ease: "sine.inOut" }, at);
+  tl.fromTo(`${id} .sleep`, { opacity: .35, y: 20 }, { opacity: 1, y: -25,
+    duration: 1.2, repeat: Math.max(0, Math.floor(length/1.2)-1), yoyo: true, ease: "sine.inOut" }, at);
+}
+function dropStone(id, i, at, speed, waterY) {
+  const ox = 1270 + i*48, oy = 785 + i%2*18;
+  const stone = `${id} .stone-${i}`;
+  move(`${id} .bird`, { x: ox-1190, y: 145, duration: speed*.22 }, at);
+  move(`${id} .head`, { rotation: -55, duration: speed*.2, svgOrigin: "109 106" }, at);
+  move(`${id} .bird`, { x: 0, y: 0, duration: speed*.24 }, at+speed*.25);
+  move(stone, { x: 1145-ox, y: 510-oy, duration: speed*.24 }, at+speed*.25);
+  move(`${id} .head`, { rotation: -7, duration: speed*.2, svgOrigin: "109 106" }, at+speed*.25);
+  move(stone, { x: 977-ox, y: 458-oy, duration: speed*.22, ease: "sine.out" }, at+speed*.5);
+  move(stone, { y: 649-i*45-oy, duration: speed*.2, ease: "power2.in" }, at+speed*.72);
+  tl.set(stone, { opacity: 0 }, at+speed*.92);
+  tl.set(`${id} .settled-${i}`, { opacity: 1 }, at+speed*.92);
+  move(`${id} .water`, { y: waterY, duration: .35 }, at+speed*.92);
+  tl.fromTo(`${id} .ripple`, { opacity: .85, scale: .3 }, { opacity: 0, scale: 1.3,
+    duration: .6, immediateRender: false, transformOrigin: "50% 50%" }, at+speed*.92);
+  for(let j=0;j<5;j++) tl.fromTo(`${id} .splash-${j}`, { opacity: 1, x: 0, y: 0 }, {
+    opacity: 0, x: (j-2)*17, y: -45-j%2*20, duration: .5,
+    ease: "power2.out", immediateRender: false }, at+speed*.92);
+}
+
 for (const section of document.querySelectorAll(".scene")) {
-  const id = `#${section.id}`;
-  const start = Number(section.dataset.start);
-  const length = Number(section.dataset.duration);
-  // A slow camera push supplies depth without moving the reading layer.
-  tl.fromTo(`${id} .world`, { scale: 1.018, x: 0 }, {
-    scale: 1.055, x: -12, duration: length, ease: "sine.inOut",
-    transformOrigin: "50% 60%",
-  }, start);
-  reveal(`${id} .chapter`, start + 0.12);
-  const delayedMoral = STORY_ID === "foolish-move-mountain" && section.id === "s4";
-  if (!delayedMoral && section.querySelector("h1")) reveal(`${id} h1`, start + 0.25, 0.65);
-  if (!delayedMoral && section.querySelector(".subtitle")) reveal(`${id} .subtitle`, start + 0.48, 0.65);
-  move(`${id} .cloud`, { x: 45, duration: length, ease: "none" }, start);
-  move(`${id} .distant`, { x: -18, duration: length, ease: "none" }, start);
-  if (section.querySelector(".tree")) move(`${id} .tree`, { x: -30, duration: length, ease: "none" }, start);
-  move(`${id} .plant`, { x: -48, duration: length, ease: "none" }, start);
-  sway(`${id} .plant`, 2, start, length, 1.7);
-  sway(`${id} .flower`, 4, start, length, 1.2);
-  if (section.querySelector(".bubble") && !(STORY_ID === "turtle-rabbit" && section.id === "s2")) {
-    tl.fromTo(`${id} .bubble`, { opacity: 0, scale: 0.8 }, {
-      opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.3)",
-      transformOrigin: "50% 100%",
-    }, start + 0.6);
+  const id = `#${section.id}`, at = Number(section.dataset.start);
+  const length = Number(section.dataset.duration), beat = section.dataset.beat;
+  const second = Number(section.dataset.cueSecond);
+  tl.fromTo(`${id} .world`, { scale: 1.018, x: 0 }, { scale: 1.055, x: -12,
+    duration: length, ease: "sine.inOut", transformOrigin: "50% 60%" }, at);
+  reveal(`${id} .chapter`, at+.12);
+  if(section.querySelector("h1")) reveal(`${id} h1`, at+.25, .65);
+  if(section.querySelector(".subtitle")) reveal(`${id} .subtitle`, at+.48, .65);
+  move(`${id} .cloud`, { x: 45, duration: length, ease: "none" }, at);
+  move(`${id} .distant`, { x: -18, duration: length, ease: "none" }, at);
+  if(section.querySelector(".tree")) move(`${id} .tree`, { x: -30, duration: length, ease: "none" }, at);
+  sway(`${id} .plant`, 2, at, length, 1.7);
+  sway(`${id} .flower`, 4, at, length, 1.2);
+  if(section.querySelector(".bubble")) reveal(`${id} .bubble`, beat==='test'?second:at+.7);
+  if(section.querySelector(".spark")) reveal(`${id} .spark`, at+1.1);
+  if(section.querySelector(".eye") && !['sleep','overtake','wake'].includes(beat)) {
+    for(let i=1.5;i<length-.2;i+=3.7) blink(`${id} .eye`, at+i);
   }
-  if (section.querySelector(".spark")) {
-    tl.fromTo(`${id} .spark`, { opacity: 0, scale: 0.2 }, {
-      opacity: 1, scale: 1, duration: 0.6, stagger: 0.1,
-      transformOrigin: "50% 50%", ease: "back.out(2)",
-    }, start + (STORY_ID === "crow-water" && section.id === "s3" ? 4.4 : 1.1));
+
+  if(STORY_ID === "crow-water") {
+    if(beat==='thirst') {
+      tl.fromTo(`${id} .bird`, { x: 340, y: -180 }, { x: -340, y: 110, duration: length, ease: "sine.inOut" }, at);
+      move(`${id} .wing`, { rotation: -42, duration: .24, repeat: Math.max(0, Math.floor(length/.24)-1), yoyo: true, svgOrigin: "118 150" }, at);
+      move(`${id} .head`, { rotation: 12, duration: 1.5, svgOrigin: "109 106" }, second);
+    } else if(beat==='search') {
+      fly(id,at,2,-195,40);
+      move(`${id} .head`, { rotation: -32, duration: 1, svgOrigin: "109 106" }, at+2);
+      move(`${id} .head`, { rotation: 10, duration: .7, svgOrigin: "109 106" }, second);
+      fly(id,second+1.1,length-(second-at)-1.3,350,-240);
+    } else if(beat==='discover') {
+      tl.fromTo(`${id} .bird`, { x: 430, y: -300 }, { x: 0, y: 0, duration: 2, ease: "power2.out" }, at);
+      move(`${id} .wing`, { rotation: -42, duration: .18, repeat: 9, yoyo: true, svgOrigin: "118 150" }, at);
+      move(`${id} .bird`, { x: -150, y: -190, duration: 1.1 }, second-.3);
+      move(`${id} .head`, { rotation: -25, duration: .7, svgOrigin: "109 106" }, second);
+    } else if(beat==='reach') {
+      move(`${id} .bird`, { x: -195, y: -205, rotation: -7, duration: 1 }, at+.5);
+      move(`${id} .head`, { rotation: -32, duration: .7, svgOrigin: "109 106" }, at+1.5);
+      move(`${id} .head`, { rotation: -25, duration: .35, repeat: 3, yoyo: true, svgOrigin: "109 106" }, second-.5);
+      move(`${id} .bird`, { x: 0, y: 0, rotation: 0, duration: .8 }, second+2);
+    } else if(beat==='push') {
+      move(`${id} .bird`, { x: -20, y: 40, rotation: -8, duration: 1 }, at+.6);
+      for(let t=at+2;t<at+length-2;t+=2) {
+        move(`${id} .bird`, { x: -40, rotation: -13, duration: .45, repeat: 1, yoyo: true }, t);
+        move(`${id} .wing`, { rotation: -35, duration: .45, repeat: 1, yoyo: true, svgOrigin: "118 150" }, t);
+        move(`${id} .pot`, { rotation: -.8, duration: .25, repeat: 1, yoyo: true, transformOrigin: "50% 100%" }, t+.3);
+      }
+      move(`${id} .bird`, { x: 15, rotation: 0, duration: .8 }, at+length-1.4);
+    } else if(beat==='idea') {
+      move(`${id} .head`, { rotation: 15, duration: .8, svgOrigin: "109 106" }, at+1);
+      move(`${id} .head`, { rotation: -24, duration: .8, svgOrigin: "109 106" }, at+3);
+      tl.set(`${id} .idea-light`, { opacity: 0 }, at);
+      reveal(`${id} .idea-light`, second-.2);
+      move(`${id} .stone-0`, { scale: 1.3, duration: .5, repeat: 3, yoyo: true, transformOrigin: "50% 50%" }, second);
+    } else if(['test','repeat'].includes(beat)) {
+      tl.set(`${id} .settled, ${id} .splash, ${id} .ripple`, { opacity: 0 }, at);
+      if(beat==='test') dropStone(id,0,at+1,Math.max(2,second-at-1.7),-38);
+      else for(let i=0;i<4;i++) dropStone(id,i,at+.7+i*(length-1.6)/4,(length-1.6)/4,-30*(i+1));
+    } else if(beat==='drink') {
+      tl.set(`${id} .splash, ${id} .ripple`, { opacity: 0 }, at);
+      move(`${id} .bird`, { x: -158, y: -65, duration: 1.1 }, at+.6);
+      move(`${id} .head`, { rotation: -31, duration: .7, svgOrigin: "109 106" }, at+1.4);
+      move(`${id} .head`, { rotation: -23, duration: .45, repeat: Math.max(0, Math.floor((length-2.5)/.45)-1), yoyo: true, svgOrigin: "109 106" }, at+2.3);
+    } else {
+      move(`${id} .head`, { rotation: 5, duration: .5, repeat: 3, yoyo: true, svgOrigin: "109 106" }, at+.5);
+      fly(id,second,length-(second-at)-.2,260,-280);
+    }
   }
-  if (section.querySelector(".eye")) {
-    const eyes = STORY_ID === "turtle-rabbit" && ["s2", "s3"].includes(section.id)
-      ? `${id} .tortoise .eye` : `${id} .eye`;
-    blink(eyes, start + Math.min(1.5, length - 0.4));
-    if (length > 4) blink(eyes, start + 3.7);
+
+  if(STORY_ID === "turtle-rabbit") {
+    if(beat==='rivalry') {
+      walk(`${id} .tortoise`,at+1,length-1.2,.5,10);
+      move(`${id} .tortoise`, { x: 90, duration: length-1.2, ease: "none" }, at+1);
+      move(`${id} .rabbit .arm`, { rotation: -30, duration: .5, repeat: 5, yoyo: true, svgOrigin: "0 10" }, second);
+      sway(`${id} .rabbit .ear`,8,second,length-(second-at),.5);
+    } else if(beat==='challenge') {
+      move(`${id} .tortoise .head`, { y: -12, rotation: -6, duration: .6, repeat: 3, yoyo: true, transformOrigin: "50% 80%" }, at+1);
+      move(`${id} .rabbit .head`, { rotation: 8, duration: .5, repeat: 3, yoyo: true, svgOrigin: "160 135" }, second);
+    } else if(beat==='start') {
+      move(`${id} .flag`, { rotation: -12, duration: .25, repeat: 3, yoyo: true, transformOrigin: "50% 100%" }, second-.3);
+      const run=length-(second-at)-.2;
+      walk(`${id} .rabbit`,second,run,.14,28); walk(`${id} .tortoise`,second,run,.45,10);
+      move(`${id} .rabbit`, { x: 640, duration: run, ease: "power1.in" }, second);
+      move(`${id} .tortoise`, { x: 150, duration: run, ease: "none" }, second);
+    } else if(beat==='lead') {
+      move(`${id} .rabbit`, { x: 390, duration: length-1, ease: "none" }, at);
+      walk(`${id} .rabbit`,at,length-1,.14,28);
+      move(`${id} .tortoise`, { x: 100, duration: length, ease: "none" }, at);
+      walk(`${id} .tortoise`,at,length-.1,.5,10);
+      move(`${id} .rabbit .head`, { rotation: -22, duration: .8, svgOrigin: "160 135" }, second);
+    } else if(beat==='sleep') {
+      tl.set(`${id} .sleep`, { opacity: 0 }, at);
+      move(`${id} .rabbit .head`, { rotation: -16, duration: .8, svgOrigin: "160 135" }, second-.6);
+      sleep(id,second,length-(second-at)-.1);
+    } else if(beat==='steady') {
+      move(`${id} .tortoise`, { x: 380, duration: length, ease: "none" }, at);
+      walk(`${id} .tortoise`,at,length-.1,.5,10);
+      sway(`${id} .tortoise .scarf`,5,at,length,.5);
+    } else if(beat==='overtake') {
+      sleep(id,at,length-.1);
+      move(`${id} .tortoise`, { x: 950, duration: length, ease: "none" }, at);
+      walk(`${id} .tortoise`,at,length-.1,.5,10);
+    } else if(beat==='wake') {
+      sleep(id,at,2);
+      move(`${id} .rabbit`, { rotation: 0, y: 0, duration: .4, ease: "back.out(1.5)" }, at+2);
+      move(`${id} .rabbit .eye`, { scaleY: 1, duration: .1 }, at+2);
+      move(`${id} .sleep`, { opacity: 0, duration: .2 }, at+2);
+      sway(`${id} .rabbit .ear`,12,at+2.2,1,.15);
+      move(`${id} .rabbit`, { x: 700, duration: length-(second-at), ease: "power2.in" }, second);
+      walk(`${id} .rabbit`,second,length-(second-at)-.1,.12,32);
+    } else if(beat==='finish') {
+      const crossing=second-at;
+      move(`${id} .tortoise`, { x: 390, duration: crossing, ease: "none" }, at);
+      walk(`${id} .tortoise`,at,crossing,.45,10);
+      move(`${id} .ribbon`, { scaleX: 0, opacity: 0, duration: .4, transformOrigin: "50% 50%" }, second-.4);
+      move(`${id} .rabbit`, { x: 920, duration: length-1, ease: "power2.out" }, at);
+      walk(`${id} .rabbit`,at,length-1,.15,24);
+      move(`${id} .spectator`, { y: -15, duration: .3, repeat: 7, yoyo: true, stagger: .09 }, second);
+    } else {
+      move(`${id} .rabbit .head`, { rotation: 12, y: 10, duration: 1, svgOrigin: "160 135" }, at+.6);
+      move(`${id} .rabbit .ear`, { rotation: -24, duration: 1, transformOrigin: "50% 100%" }, at+.6);
+      move(`${id} .tortoise .head`, { y: -10, duration: .7, repeat: 3, yoyo: true }, second);
+    }
+  }
+
+  if(STORY_ID === "foolish-move-mountain") {
+    if(beat==='blocked') {
+      move(`${id} .elder`, { x: 145, duration: 3, ease: "none" }, second);
+      walk(`${id} .elder`,second,3,.5,10);
+      move(`${id} .elder .head`, { rotation: -8, duration: .8, transformOrigin: "50% 90%" }, second+3);
+    } else if(['plan','question','answer'].includes(beat)) {
+      move(`${id} .elder .arm-tool`, { rotation: -24, duration: .7, repeat: 3, yoyo: true, svgOrigin: "0 15" }, second);
+      move(`${id} .elder .head`, { rotation: -5, duration: .65, repeat: 3, yoyo: true, transformOrigin: "50% 90%" }, at+1);
+      if(beat==='answer') move(`${id} .sage .head`, { y: 8, rotation: 10, duration: 1, transformOrigin: "50% 90%" }, second+1);
+    } else if(['dig','generations','seasons'].includes(beat)) {
+      for(let i=0;i<3;i++) dig(`${id} .worker-${i}`,at+.3+i*.2,length-.6-i*.2,1.5);
+      for(let i=0;i<7;i++) {
+        tl.fromTo(`${id} .chip-${i}`, { x: -80, y: -10, opacity: 0 }, {
+          x: i*10, y: -70, opacity: 1, duration: .4, immediateRender: false }, at+1.3+i*.13);
+        move(`${id} .chip-${i}`, { y: 0, duration: .5 }, at+1.7+i*.13);
+      }
+      if(beat==='seasons') {
+        tl.set(`${id} .winter`, { opacity: 0 }, at);
+        move(`${id} .autumn`, { opacity: 0, duration: 1.3 }, second-1);
+        move(`${id} .leaf`, { y: 260, rotation: 90, duration: second-at, stagger: .08 }, at);
+        move(`${id} .winter`, { opacity: 1, duration: 1.3 }, second-1);
+        move(`${id} .snow`, { y: 350, x: 30, duration: length-(second-at)+1, stagger: .04 }, second-1);
+      }
+    } else if(beat==='carry') {
+      for(let i=0;i<3;i++) {
+        move(`${id} .carrier-${i}, ${id} .basket-${i}`, { x: 285, duration: length, ease: "none" }, at);
+        walk(`${id} .carrier-${i}`,at,length-.1,.55,10);
+        move(`${id} .basket-${i}`, { y: -5, duration: .55, repeat: Math.max(0, Math.floor(length/.55)-1), yoyo: true }, at);
+      }
+    } else if(beat==='doubt') {
+      move(`${id} .sage .head`, { rotation: 8, duration: .5, repeat: 5, yoyo: true, transformOrigin: "50% 90%" }, at+1);
+      move(`${id} .sage .arm-tool`, { rotation: -28, duration: .8, repeat: 3, yoyo: true, svgOrigin: "0 15" }, second);
+    } else if(beat==='divine') {
+      tl.fromTo(`${id} .god`, { y: -650, opacity: 0 }, { y: 0, opacity: 1,
+        duration: 3, stagger: .3, ease: "power2.out" }, at+.3);
+      sway(`${id} .god .halo`,3,at,length,.8);
+    } else if(beat==='lift') {
+      // The helpers visibly bear the mountains as they lift and carry them away.
+      move(`${id} .mountain-left, ${id} .mountain-right`, { scale: .58, y: -365,
+        duration: 2.6, transformOrigin: "50% 100%" }, at+.4);
+      move(`${id} .god`, { y: -40, duration: 2.6 }, at+.4);
+      move(`${id} .mountain-left, ${id} .god-left`, { x: -920, y: -600,
+        duration: second-at-2.8, ease: "power2.in" }, at+3.1);
+      move(`${id} .mountain-right, ${id} .god-right`, { x: 920, y: -600,
+        duration: second-at-2.8, ease: "power2.in" }, at+3.1);
+    } else {
+      move(`${id} .elder`, { x: 260, y: -100, scale: .9, duration: length, ease: "none" }, at);
+      move(`${id} .child`, { x: 250, y: -125, scale: .9, duration: length, ease: "none" }, at);
+      walk(`${id} .elder`,at,length-.1,.5,10); walk(`${id} .child`,at,length-.1,.4,14);
+    }
   }
 }
 for (const caption of document.querySelectorAll(".caption")) {
-  tl.fromTo(`#${caption.id} span`, { opacity: 0, y: 8 }, {
-    opacity: 1, y: 0, duration: 0.16, ease: "power1.out",
-  }, Number(caption.dataset.start));
-}
-
-if (STORY_ID === "crow-water") {
-  tl.fromTo("#s1 .bird", { x: 400, y: -300, rotation: -12 }, {
-    x: 0, y: 0, rotation: 0, duration: 1.55, ease: "power2.out",
-  }, 0);
-  move("#s1 .wing", { rotation: -42, duration: 0.15, repeat: 8,
-    yoyo: true, svgOrigin: "118 150", ease: "sine.inOut" }, 0);
-  move("#s1 .landing-shadow", { scaleX: 0.7, duration: 0.7, repeat: 1,
-    yoyo: true, transformOrigin: "50% 50%" }, 0.1);
-
-  // Lean in, try to reach the low water, then pull back and look at the stones.
-  move("#s2 .bird", { x: -198, y: -200, rotation: -7, duration: 0.8 }, 2.15);
-  move("#s2 .head", { rotation: -27, duration: 0.5,
-    svgOrigin: "109 106" }, 2.7);
-  move("#s2 .wing", { rotation: -25, duration: 0.45, yoyo: true,
-    repeat: 1, svgOrigin: "118 150" }, 3.1);
-  move("#s2 .bird", { x: 0, y: 0, rotation: 0, duration: 0.65,
-    ease: "back.out(1.2)" }, 4.05);
-  move("#s2 .head", { rotation: 13, duration: 0.6,
-    svgOrigin: "109 106" }, 4.45);
-  move("#s2 .bubble", { opacity: 0, duration: 0.25 }, 5.65);
-
-  // Each stone follows ground -> beak -> jar -> water. Water rises on impact.
-  tl.set("#s3 .settled, #s3 .splash, #s3 .ripple", { opacity: 0 }, 6.2);
-  for (let i = 0; i < 4; i++) {
-    const at = 7.4 + i * 0.85;
-    const originX = 1270 + i * 48;
-    const originY = 785 + (i % 2) * 18;
-    const selector = `#s3 .stone-${i}`;
-    move("#s3 .bird", { x: originX - 1190, y: 145, duration: 0.2,
-      ease: "power2.inOut" }, at);
-    move("#s3 .head", { rotation: -55, y: 0, duration: 0.18,
-      svgOrigin: "109 106" }, at);
-    move("#s3 .bird", { x: 0, y: 0, duration: 0.25,
-      ease: "power2.out" }, at + 0.22);
-    move(selector, { x: 1145 - originX, y: 510 - originY,
-      duration: 0.25, ease: "power2.out" }, at + 0.22);
-    move("#s3 .head", { rotation: -7, y: 0, duration: 0.2,
-      svgOrigin: "109 106" }, at + 0.22);
-    move("#s3 .wing", { rotation: -35, duration: 0.12,
-      repeat: 1, yoyo: true, svgOrigin: "118 150" }, at + 0.22);
-    move(selector, { x: 977 - originX, y: 458 - originY,
-      duration: 0.22, ease: "sine.out" }, at + 0.47);
-    move(selector, { y: 649 - i * 50 - originY,
-      duration: 0.16, ease: "power2.in" }, at + 0.69);
-    move(selector, { opacity: 0, duration: 0.03 }, at + 0.85);
-    tl.set(`#s3 .settled-${i}`, { opacity: 1 }, at + 0.85);
-    move("#s3 .water", { y: -38 * (i + 1), duration: 0.22,
-      ease: "power1.out" }, at + 0.85);
-    tl.fromTo("#s3 .ripple", { opacity: 0.85, scale: 0.3 }, {
-      opacity: 0, scale: 1.3, duration: 0.45, immediateRender: false,
-      transformOrigin: "50% 50%",
-    }, at + 0.84);
-    for (let drop = 0; drop < 5; drop++) {
-      tl.fromTo(`#s3 .splash-${drop}`, { opacity: 1, x: 0, y: 0 }, {
-        opacity: 0, x: (drop - 2) * 17, y: -45 - (drop % 2) * 20,
-        duration: 0.38, ease: "power2.out", immediateRender: false,
-      }, at + 0.84);
-    }
-  }
-  move("#s3 .bubble", { opacity: 0, duration: 0.2 }, 7.35);
-  move("#s3 .bird", { x: -158, y: -65, duration: 0.55 }, 11.6);
-  move("#s3 .head", { rotation: -31, duration: 0.45,
-    svgOrigin: "109 106" }, 11.75);
-  move("#s3 .head", { rotation: -23, duration: 0.17,
-    repeat: 3, yoyo: true, svgOrigin: "109 106" }, 12.15);
-  walk("#s4 .bird", 13.2, 2, 0.28, 7);
-  move("#s4 .wing", { rotation: -32, duration: 0.32,
-    repeat: 3, yoyo: true, svgOrigin: "118 150" }, 14.2);
-  move("#s4 .bird", { y: -18, duration: 0.35,
-    repeat: 3, yoyo: true, ease: "sine.inOut" }, 14.2);
-  reveal(".seal", 13.85);
-}
-
-if (STORY_ID === "turtle-rabbit") {
-  move("#s1 .flag", { rotation: -5, duration: 0.25,
-    repeat: 5, yoyo: true, transformOrigin: "50% 100%" }, 2.15);
-  walk("#s1 .rabbit", 2.2, 1.5, 0.14, 28);
-  walk("#s1 .tortoise", 2.2, 1.5, 0.45, 10);
-  move("#s1 .rabbit", { x: 200, duration: 1.5, ease: "power2.in" }, 2.2);
-  move("#s1 .tortoise", { x: 65, duration: 1.5, ease: "none" }, 2.2);
-
-  // A rapid run decelerates under the tree; ears and arms carry the momentum.
-  tl.fromTo("#s2 .rabbit", { x: -920 }, { x: 50,
-    duration: 2.6, ease: "power2.out" }, 3.8);
-  walk("#s2 .rabbit", 3.8, 2.7, 0.13, 30);
-  sway("#s2 .rabbit .ear", 12, 3.8, 2.6, 0.26);
-  move("#s2 .rabbit .arm", { rotation: -30, duration: 0.15,
-    repeat: 15, yoyo: true, svgOrigin: "0 10" }, 3.8);
-  move("#s2 .rabbit", { y: 56, rotation: -16, duration: 0.65,
-    svgOrigin: "148 245" }, 6.65);
-  move("#s2 .rabbit .head", { rotation: -16, duration: 0.6,
-    svgOrigin: "160 135" }, 6.7);
-  move("#s2 .rabbit .eye", { scaleY: 0.08, duration: 0.3,
-    transformOrigin: "50% 50%" }, 7.3);
-  // Keep the sleeping eyes shut even after the general blink for this scene.
-  tl.set("#s2 .rabbit .eye", { scaleY: 0.08 }, 7.65);
-  move("#s2 .rabbit .torso", { scaleY: 1.025, duration: 0.7,
-    yoyo: true, repeat: 2, transformOrigin: "50% 100%", ease: "sine.inOut" }, 7.7);
-  tl.fromTo("#s2 .sleep", { opacity: 0, y: 25 }, {
-    opacity: 1, y: -15, duration: 0.8, repeat: 2, yoyo: true,
-    ease: "sine.inOut",
-  }, 7.3);
-  tl.set("#s2 .bubble", { opacity: 0 }, 3.8);
-  reveal("#s2 .bubble", 7.15);
-  move("#s2 .tortoise", { x: 195, duration: 6.4, ease: "none" }, 3.8);
-  walk("#s2 .tortoise", 3.8, 6.3, 0.5, 11);
-
-  move("#s3 .tortoise", { x: 760, duration: 7.25, ease: "none" }, 10.2);
-  walk("#s3 .tortoise", 10.2, 7.2, 0.4, 12);
-  move("#s3 .tortoise .scarf", { rotation: 5, duration: 0.45,
-    repeat: 14, yoyo: true, svgOrigin: "293 210" }, 10.2);
-  tl.set("#s3 .rabbit", { rotation: -16, y: 50, opacity: 0.8 }, 10.2);
-  tl.set("#s3 .rabbit .eye", { scaleY: 0.08,
-    transformOrigin: "50% 50%" }, 10.2);
-  move("#s3 .rabbit", { rotation: 0, y: 0, opacity: 1,
-    duration: 0.3, ease: "back.out(1.5)" }, 14.1);
-  move("#s3 .rabbit .eye", { scaleY: 1, duration: 0.1 }, 14.1);
-  move("#s3 .rabbit .ear", { rotation: 15, duration: 0.12,
-    repeat: 1, yoyo: true, transformOrigin: "50% 100%" }, 14.2);
-  move("#s3 .rabbit", { x: 770, duration: 2.8, ease: "power2.in" }, 14.5);
-  walk("#s3 .rabbit", 14.5, 2.9, 0.12, 32);
-  move("#s3 .bubble", { opacity: 0, duration: 0.25 }, 13.8);
-
-  move("#s4 .tortoise", { x: 190, duration: 1, ease: "power1.out" }, 17.5);
-  walk("#s4 .tortoise", 17.5, 1, 0.3, 13);
-  move("#s4 .ribbon", { scaleX: 0, opacity: 0, duration: 0.35,
-    transformOrigin: "50% 50%" }, 17.85);
-  move("#s4 .rabbit", { x: 255, duration: 0.85, ease: "power2.out" }, 17.5);
-  walk("#s4 .rabbit", 17.5, 0.85, 0.13, 24);
-  move("#s4 .rabbit .head", { rotation: 12, y: 10, duration: 0.6,
-    svgOrigin: "160 135" }, 18.45);
-  move("#s4 .rabbit .ear", { rotation: -24, duration: 0.6,
-    transformOrigin: "50% 100%" }, 18.45);
-  move("#s4 .tortoise .head", { y: -10, duration: 0.5,
-    repeat: 3, yoyo: true, ease: "sine.inOut" }, 18.7);
-  move("#s4 .spectator", { y: -15, duration: 0.3, repeat: 5,
-    yoyo: true, stagger: 0.09, ease: "sine.inOut" }, 18.1);
-}
-
-if (STORY_ID === "foolish-move-mountain") {
-  move("#s1 .elder", { x: 150, duration: 3.1, ease: "none" }, 1.3);
-  walk("#s1 .elder", 1.3, 3, 0.5, 10);
-  move("#s1 .elder .head", { rotation: -8, duration: 0.8,
-    transformOrigin: "50% 90%" }, 4.5);
-  move("#s1 .elder .arm-tool", { rotation: -13, duration: 0.6,
-    svgOrigin: "0 15" }, 5.4);
-
-  dig("#s2 .elder", 8.1, 2.9, 0.95);
-  tl.set("#s2 .chip", { opacity: 0 }, 7.8);
-  for (let i = 0; i < 7; i++) {
-    const impact = 8.72 + (i % 3) * 0.95;
-    tl.fromTo(`#s2 .chip-${i}`, { x: -120, y: -35, opacity: 1 }, {
-      x: 25 + i * 12, y: -90 - (i % 3) * 18,
-      rotation: 100 + i * 35, duration: 0.22,
-      ease: "power1.out", immediateRender: false,
-    }, impact);
-    move(`#s2 .chip-${i}`, { y: 5, opacity: 0.85,
-      duration: 0.33, ease: "power2.in" }, impact + 0.22);
-  }
-  for (let i = 0; i < 4; i++) dig(`#s3 .worker-${i}`, 11.25 + i * 0.15, 6.3 - i * 0.15, 1.1);
-  move("#s3 .rock-pile", { y: -8, duration: 0.15, repeat: 1,
-    yoyo: true, stagger: 0.03 }, 14.05);
-
-  // Mountain silhouettes remain intact while they separate; the road underneath
-  // is revealed rather than swapping the landscape for a static moral slide.
-  move("#s4 .mountain-left", { x: -760, y: 100, duration: 2.8,
-    ease: "power3.inOut" }, 18.1);
-  move("#s4 .mountain-right", { x: 770, y: 110, duration: 2.8,
-    ease: "power3.inOut" }, 18.1);
-  tl.fromTo("#s4 .open-road", { opacity: 0 }, {
-    opacity: 1, duration: 1.6, ease: "sine.inOut",
-  }, 18.5);
-  tl.fromTo("#s4 h1, #s4 .subtitle", { opacity: 0, y: 18 }, {
-    opacity: 1, y: 0, duration: 0.8, stagger: 0.2,
-    immediateRender: false, ease: "power2.out",
-  }, 20.9);
-  tl.set("#s4 h1, #s4 .subtitle", { opacity: 0 }, 18.1);
-  move("#s4 .elder", { x: 290, y: -110, scale: 0.9, duration: 3, ease: "none" }, 21.2);
-  move("#s4 .child", { x: 270, y: -150, scale: 0.9, duration: 3, ease: "none" }, 21.2);
-  walk("#s4 .elder", 21.2, 3, 0.45, 11);
-  walk("#s4 .child", 21.2, 3, 0.35, 17);
+  reveal(`#${caption.id} span`, Number(caption.dataset.start), .16);
 }
 window.__timelines[STORY_ID] = tl;

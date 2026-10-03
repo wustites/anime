@@ -36,8 +36,12 @@ def mix(project, *, base=BASE, cues=None, video=None):
     for index, cue in enumerate(cues, start=1):
         audio = audio_dir / f"{cue['name']}.mp3"
         end = cues[index]["start"] if index < len(cues) else duration
+        end = min(end, cue.get("end", end))
         window = end - cue["start"]
         audio_duration = probe_duration(audio)
+        if "end" in cue and audio_duration > window + .02:
+            raise ValueError(f"{project}/{cue['name']}: complete narration needs {audio_duration:.2f}s, "
+                             f"but its window is {window:.2f}s; run storybook/fit_voice.py and rebuild")
         if audio_duration > window:
             print(f"  Trimming {cue['name']}: {audio_duration:.2f}s to {window:.2f}s")
         inputs.extend(["-i", str(audio)])

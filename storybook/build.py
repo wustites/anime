@@ -132,7 +132,7 @@ def rabbit():
     return art
 
 
-def elder(child=False):
+def elder(child=False, tool=True):
     art = ellipse(95, 296, 90, 15, '#76664a', 'shadow')
     for x, cls in ((62, 'leg-a'), (120, 'leg-b')):
         art += group(path('M0 0 L-5 61 L-34 67 Q-45 82 14 79 L19 9Z', '#544b47'), x, 210, cls=f'leg {cls}')
@@ -141,8 +141,9 @@ def elder(child=False):
     art += group(path('M0 0 Q-32 14 -54 51 L-41 72 Q-7 43 11 25Z', '#d1a477') + ellipse(-50, 67, 15, 14, '#e5b88e'), 49, 134, cls='arm-back')
     arm = path('M0 0 Q24 10 35 43 L79 24 L94 45 Q41 83 15 58 L-13 24Z', '#b56b4e' if not child else '#698b79')
     arm += ellipse(87, 37, 15, 14, '#e5b88e')
-    arm += path('M94 -72 L80 124', 'none', stroke='#947249', sw=12)
-    arm += path('M49 -75 Q92 -101 153 -75 L151 -51 Q104 -62 57 -49Z', '#7b8d8e')
+    if tool:
+        arm += path('M94 -72 L80 124', 'none', stroke='#947249', sw=12)
+        arm += path('M49 -75 Q92 -101 153 -75 L151 -51 Q104 -62 57 -49Z', '#7b8d8e')
     art += group(arm, 134, 132, cls='arm-tool')
     head = path('M40 40 Q44 0 85 4 Q124 7 129 52 Q152 68 128 79 Q110 119 64 103 Q29 89 40 40Z', '#e5b88e')
     if not child:
@@ -245,81 +246,12 @@ def scene(project, index, start, end, art, title, subtitle, label, extra=''):
     svg = f'<svg class="world" data-layout-allow-overflow viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="{escape(label)}" role="img">{art}</svg>'
     title_html = f'<h1>{escape(title)}</h1>' if title else ''
     subtitle_html = f'<p class="subtitle">{escape(subtitle)}</p>' if subtitle else ''
-    return f'''<section id="s{index}" class="scene clip" data-start="{start}" data-duration="{end-start:.2f}" data-track-index="{index}">
+    return f'''<section id="s{index}" class="scene clip" data-start="{start}" data-duration="{end-start:.3f}" data-track-index="1">
       <figure class="shot">{svg}</figure>
-      <p class="chapter"><span class="chapter-number">0{index}</span><span>{escape(label)}</span></p>
+      <p class="chapter"><span class="chapter-number">{index:02d}</span><span>{escape(label)}</span></p>
       <header class="copy">{title_html}{subtitle_html}</header>{extra}
     </section>'''
 
-
-def crow_scenes():
-    a = scenery() + group(pot('opening', 258), 985, 500, .85, 'pot')
-    a += ellipse(1430, 835, 150, 22, '#918769', 'landing-shadow')
-    a += group(crow(), 1260, 565, 1.05, 'hero bird') + foreground()
-    b = scenery() + group(pot('problem', 258), 810, 358, 1.38, 'pot')
-    b += ellipse(1430, 825, 155, 24, '#918769', 'landing-shadow')
-    b += group(crow(), 1215, 495, 1.25, 'hero bird') + bubble('就差一点点……', 1210, 240, 400)
-    for i in range(5):
-        b += stone(1410 + i * 49, 820 - (i % 2) * 20, 'ground-stone')
-    b += foreground()
-    c = scenery() + group(pot('solution', 258, stones=True), 800, 390, 1.28, 'pot')
-    c += ellipse(1330, 835, 170, 23, '#918769', 'landing-shadow')
-    c += group(crow(), 1155, 355, 1.4, 'hero bird') + bubble('有办法了！', 1220, 205, 350)
-    for i in range(4):
-        c += stone(1270 + i * 48, 785 + (i % 2) * 18, f'falling-stone stone-{i}')
-    for i in range(5):
-        c += group(path('M0 0 Q-6 -15 0 -24 Q6 -15 0 0Z', '#6aa6a5', stroke='none'), 975 + i * 22, 521, cls=f'splash splash-{i}')
-    c += group(ellipse(0, 0, 63, 9, 'none', 'ripple', '#77b6af', 5), 977, 512)
-    c += sparkles(1140, 465) + foreground()
-    d = scenery() + group(pot('ending', 99, stones=True), 1090, 500, .9, 'pot')
-    d += ellipse(1560, 827, 135, 20, '#918769', 'landing-shadow')
-    d += group(crow(), 1390, 575, .95, 'hero bird') + sparkles(1520, 570) + foreground()
-    return [scene('crow-water', 1, 0, 2, a, '乌鸦喝水', '一只口渴的小乌鸦，发现了一个陶罐。', '中国寓言 · 聪明的小办法'),
-            scene('crow-water', 2, 2, 6.2, b, '', '', '遇到难题 · 水太浅了'),
-            scene('crow-water', 3, 6.2, 13, c, '', '', '试试这个 · 小石子的大作用'),
-            scene('crow-water', 4, 13, 18, d, '肯动脑筋\n办法总比困难多', '小小的石子，也能一步一步改变眼前的难题。', '故事里的智慧', '<aside class="seal">智</aside>')]
-
-
-def turtle_scenes():
-    a = scenery() + race_track() + group(tortoise(), 980, 554, .9, 'hero tortoise') + group(rabbit(), 1330, 570, .9, 'hero rabbit')
-    a += group(path('M0 0 V280', 'none', stroke='#886c4f', sw=12) + path('M0 0 H140 L115 53 L140 105 H0Z', '#d76e50'), 830, 575, cls='flag') + foreground()
-    b = scenery() + race_track() + group(rabbit(), 1030, 505, 1.12, 'hero rabbit') + group(tortoise(), 125, 655, .66, 'hero tortoise')
-    b += group(tree(0, 0, 1.3, '#537861'), 1340, 200, cls='shade-tree')
-    b += bubble('先睡一觉吧～', 1170, 315, 350)
-    b += '<g class="sleep"><text x="1560" y="300" font-size="68" fill="#493b36">Z</text><text x="1630" y="245" font-size="45" fill="#493b36">z</text><text x="1680" y="198" font-size="30" fill="#493b36">z</text></g>'
-    b += foreground()
-    c = scenery() + race_track() + finish() + group(tortoise(), 325, 557, 1.04, 'hero tortoise') + group(rabbit(), 90, 640, .77, 'hero rabbit')
-    c += bubble('一步一步，坚持向前。', 380, 340, 520) + foreground()
-    d = scenery() + race_track() + spectators() + finish()
-    d += group(tortoise(), 1000, 592, .95, 'hero tortoise') + group(rabbit(), 620, 650, .75, 'hero rabbit')
-    d += sparkles(1310, 635) + foreground()
-    return [scene('turtle-rabbit', 1, 0, 3.8, a, '龟兔赛跑', '跑得快，还是走得稳？森林里的比赛开始了。', '森林寓言 · 一场意外的比赛'),
-            scene('turtle-rabbit', 2, 3.8, 10.2, b, '', '', '遥遥领先 · 兔子的午睡'),
-            scene('turtle-rabbit', 3, 10.2, 17.5, c, '', '', '从不停步 · 乌龟的坚持'),
-            scene('turtle-rabbit', 4, 17.5, 23, d, '持之以恒\n一步一步，也能到达', '骄兵必败。坚持到最后的人，才是真正的赢家。', '故事里的智慧')]
-
-
-def foolish_scenes():
-    a = scenery('mountain') + house(190, 540, .9) + mountains() + group(elder(), 260, 625, .72, 'hero elder')
-    a += group(path('M0 0 H120 M12 -30 H105 M9 35 H111', 'none', stroke='#b89d72', sw=8), 395, 868, cls='blocked-road') + foreground()
-    b = scenery('mountain') + mountains() + group(elder(), 760, 465, 1.25, 'hero elder')
-    for i in range(7):
-        b += stone(1130 + i * 44, 829 - (i % 3) * 16, f'chip chip-{i}')
-    b += bubble('今天，也要再挖一点。', 195, 335, 500) + foreground()
-    c = scenery('mountain') + mountains() + house(200, 545, .9)
-    for i in range(4):
-        c += group(elder(child=i > 0), 525 + i * 250, 600 + (i % 2) * 40, .78 - i * .055, f'worker worker-{i}')
-    for i in range(8):
-        c += stone(900 + i * 49, 884 - (i % 3) * 12, 'rock-pile')
-    c += foreground()
-    d = scenery('mountain')
-    d += path('M740 1080 Q670 842 980 634 Q1080 569 1140 500', 'none', 'open-road', stroke='#f7e6c0', sw=150)
-    d += house(155, 545, .8) + mountains() + group(elder(), 560, 650, .75, 'hero elder')
-    d += group(elder(child=True), 765, 725, .48, 'hero child') + sparkles(960, 535) + foreground()
-    return [scene('foolish-move-mountain', 1, 0, 7.8, a, '愚公移山', '家门前的两座大山，挡住了通往远方的路。', '中国寓言 · 山外有远方'),
-            scene('foolish-move-mountain', 2, 7.8, 11.1, b, '', '', '第一锄 · 从今天开始'),
-            scene('foolish-move-mountain', 3, 11.1, 18.1, c, '', '', '一代又一代 · 把坚持传下去'),
-            scene('foolish-move-mountain', 4, 18.1, 25, d, '只要坚持\n终会打开一条路', '今天的一小步，会成为明天走向远方的路。', '故事里的智慧')]
 
 
 CSS = '''
@@ -334,8 +266,8 @@ body {font-family:Story,serif;color:#493b36} #book {width:100%;height:100%;posit
 .copy {position:absolute;left:106px;top:164px;max-width:1020px;pointer-events:none}
 h1 {margin:0;font-size:112px;line-height:1.24;letter-spacing:6px;font-weight:900;white-space:pre-line;color:#493b36}
 .subtitle {margin:24px 0 0;font-size:32px;line-height:1.7;max-width:780px;color:#493b36}
-#s4 .copy {top:169px;max-width:1320px} #s4 h1 {font-size:87px;line-height:1.35} #s4 .subtitle {font-size:30px;max-width:1020px}
-#s4 .chapter {color:#635744} .seal {position:absolute;left:107px;top:540px;width:93px;height:93px;border:4px solid #b85f45;border-radius:16px;color:#a7533d;background:#fff4db;display:grid;place-items:center;font-size:58px}
+.ending .copy {top:169px;max-width:1320px} .ending h1 {font-size:87px;line-height:1.35} .ending .subtitle {font-size:30px;max-width:1020px}
+.ending .chapter {color:#635744} .seal {position:absolute;left:107px;top:540px;width:93px;height:93px;border:4px solid #b85f45;border-radius:16px;color:#a7533d;background:#fff4db;display:grid;place-items:center;font-size:58px}
 .caption {position:absolute;bottom:65px;left:50%;width:1580px;margin-left:-790px;text-align:center;font-size:36px;line-height:1.4;color:#493b36;pointer-events:none}
 .caption span {display:inline-block;padding:13px 34px;background:#fff4db;border-radius:15px;box-shadow:0 3px 0 #d7b997}
 .paper {position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.2'/%3E%3C/svg%3E");mix-blend-mode:multiply}
@@ -348,7 +280,7 @@ def subset_fonts(regular, bold):
     from fontTools import subset
     import shutil
     import tempfile
-    text = Path(__file__).read_text() + (ROOT / 'narration.json').read_text()
+    text = ''.join((ROOT / 'storybook' / name).read_text() for name in ('build.py', 'scenes.py', 'story_plan.json')) + (ROOT / 'narration.json').read_text()
     with tempfile.TemporaryDirectory() as directory:
         for source, name in ((regular, 'story-regular.woff2'), (bold, 'story.woff2')):
             options = subset.Options()
@@ -365,47 +297,41 @@ def subset_fonts(regular, bold):
 
 def build():
     import json
-    narration = json.loads((ROOT / 'narration.json').read_text())
-    projects = [('crow-water', 18, crow_scenes()), ('turtle-rabbit', 23, turtle_scenes()), ('foolish-move-mountain', 25, foolish_scenes())]
+    import sys
+    import scenes as illustrations
+    plans = json.loads((ROOT / 'storybook' / 'story_plan.json').read_text())
+    narration = {name: [cue for shot in plan['shots'] for cue in shot['cues']]
+                 for name, plan in plans.items()}
+    (ROOT / 'narration.json').write_text(json.dumps(narration, ensure_ascii=False, indent=2) + '\n')
     js = (ROOT / 'storybook' / 'motion.js').read_text()
-    story_names = [name for name, _, _ in projects]
-    boundaries = [js.index(f'if (STORY_ID === "{name}") {{') for name in story_names]
-    script_end = js.index('window.__timelines[STORY_ID] = tl;')
-    common = js[:boundaries[0]]
-    for name, duration, scenes in projects:
-        # Keep only this story's choreography in its standalone composition.
-        index = story_names.index(name)
-        common_script = common
-        if name != 'foolish-move-mountain':
-            dig_start = common_script.index('function dig(')
-            dig_end = common_script.index('\nfor (const section', dig_start)
-            common_script = common_script[:dig_start] + common_script[dig_end:]
-        story_end = boundaries[index + 1] if index + 1 < len(boundaries) else script_end
-        script = common_script + js[boundaries[index]:story_end]
-        script += f'window.__timelines[{json.dumps(name)}] = tl;'
+    for name, plan in plans.items():
+        duration = plan['duration']
+        shots = []
+        for i, shot in enumerate(plan['shots'], 1):
+            art = illustrations.render(sys.modules[__name__], name, shot)
+            html = scene(name, i, shot['start'], shot['end'], art,
+                         shot['title'], shot['subtitle'], shot['chapter'])
+            html = html.replace('class="scene clip"',
+                f'class="scene clip {"ending" if shot["beat"] == "moral" else ""}" data-beat="{shot["beat"]}" data-cue-second="{shot["cues"][1]["start"]}"')
+            shots.append(html)
         captions = ''
         for i, cue in enumerate(narration[name]):
-            end = narration[name][i+1]['start'] if i+1 < len(narration[name]) else duration - .3
-            captions += f'<div id="caption-{i}" class="caption clip" data-start="{cue["start"]}" data-duration="{end-cue["start"]:.2f}" data-track-index="10"><span>{escape(cue["text"])}</span></div>'
+            end = cue['end'] if 'end' in cue else (narration[name][i+1]['start'] if i+1 < len(narration[name]) else duration-.3)
+            captions += f'<div id="caption-{i}" class="caption clip" data-start="{cue["start"]}" data-duration="{end-cue["start"]:.3f}" data-track-index="30"><span>{escape(cue["text"])}</span></div>'
+        script = js.replace('window.__timelines[STORY_ID] = tl;', f'window.__timelines[{json.dumps(name)}] = tl;')
         html = f'''<!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=1920,height=1080"><title>{escape(narration[name][0]['text'])} · 动态绘本</title>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=1920,height=1080"><title>{escape(plan['title'])} · 完整版动态绘本</title>
 <script src="assets/gsap.min.js"></script><style>{CSS}</style></head><body>
 <div id="book" data-composition-id="{name}" data-start="0" data-width="1920" data-height="1080" data-duration="{duration}">
-{''.join(scenes)}{captions}<div class="paper" data-layout-ignore></div><div class="frame" data-layout-ignore></div></div>
+{''.join(shots)}{captions}<div class="paper" data-layout-ignore></div><div class="frame" data-layout-ignore></div></div>
 <script>const STORY_ID = {json.dumps(name)};\n{script}</script></body></html>\n'''
         (ROOT / name / 'index.html').write_text(html, encoding='utf-8')
-        proof = {
-            'duration': duration,
-            'assertions': [
-                {'kind': 'appearsBy', 'selector': '#s1 h1', 'bySec': 1.2},
-                {'kind': 'appearsBy', 'selector': '#s4 h1',
-                 'bySec': 22 if name == 'foolish-move-mountain' else duration - 3},
-                *({'kind': 'staysInFrame', 'selector': f'#caption-{i}'}
-                  for i in range(len(narration[name]))),
-            ],
-        }
+        proof = {'duration': duration, 'assertions': [
+            {'kind': 'appearsBy', 'selector': '#s1 h1', 'bySec': 1.2},
+            {'kind': 'appearsBy', 'selector': f'#{plan["shots"][-1]["id"]} h1', 'bySec': duration - 2},
+            *({'kind': 'staysInFrame', 'selector': f'#caption-{i}'} for i in range(len(narration[name])))]}
         (ROOT / name / 'index.motion.json').write_text(json.dumps(proof, indent=2) + '\n')
-        print(f'Built {name}: {len(html):,} bytes')
+        print(f'Built {name}: {duration}s / {len(shots)} shots / {len(html):,} bytes')
 
 
 if __name__ == '__main__':

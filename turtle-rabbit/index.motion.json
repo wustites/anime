@@ -1,5 +1,5 @@
 {
-  "duration": 23,
+  "duration": 95.43,
   "assertions": [
     {
       "kind": "appearsBy",
@@ -8,8 +8,8 @@
     },
     {
       "kind": "appearsBy",
-      "selector": "#s4 h1",
-      "bySec": 20
+      "selector": "#s10 h1",
+      "bySec": 93.43
     },
     {
       "kind": "staysInFrame",
@@ -42,6 +42,54 @@
     {
       "kind": "staysInFrame",
       "selector": "#caption-7"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-8"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-9"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-10"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-11"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-12"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-13"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-14"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-15"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-16"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-17"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-18"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-19"
     }
   ]
 }

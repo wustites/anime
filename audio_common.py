@@ -21,6 +21,7 @@ def load_narration(path=BASE / "narration.json"):
             raise ValueError(f"Invalid project: {project}")
         names = set()
         previous = -1
+        previous_end = -1
         for cue in cues:
             if not isinstance(cue, dict) or not {"name", "text", "start"} <= cue.keys():
                 raise ValueError(f"Cue must contain name, text, and start: {project}")
@@ -34,8 +35,16 @@ def load_narration(path=BASE / "narration.json"):
             if (isinstance(start, bool) or not isinstance(start, (int, float))
                     or not math.isfinite(start) or start < 0 or start <= previous):
                 raise ValueError(f"Cue times must be finite and increasing: {name}")
+            if start < previous_end:
+                raise ValueError(f"Narration windows must not overlap: {name}")
+            if 'end' in cue:
+                end = cue['end']
+                if (isinstance(end, bool) or not isinstance(end, (int, float))
+                        or not math.isfinite(end) or end <= start):
+                    raise ValueError(f"Cue end must be finite and after its start: {name}")
             names.add(name)
             previous = start
+            previous_end = cue.get('end', start)
     return projects
 
 

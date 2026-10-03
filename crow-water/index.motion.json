@@ -1,5 +1,5 @@
 {
-  "duration": 18,
+  "duration": 92.396,
   "assertions": [
     {
       "kind": "appearsBy",
@@ -8,8 +8,8 @@
     },
     {
       "kind": "appearsBy",
-      "selector": "#s4 h1",
-      "bySec": 15
+      "selector": "#s10 h1",
+      "bySec": 90.396
     },
     {
       "kind": "staysInFrame",
@@ -34,6 +34,62 @@
     {
       "kind": "staysInFrame",
       "selector": "#caption-5"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-6"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-7"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-8"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-9"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-10"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-11"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-12"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-13"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-14"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-15"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-16"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-17"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-18"
+    },
+    {
+      "kind": "staysInFrame",
+      "selector": "#caption-19"
     }
   ]
 }

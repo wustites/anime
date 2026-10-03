@@ -1,0 +1,788 @@
+{
+  "crow-water": {
+    "title": "乌鸦喝水",
+    "shots": [
+      {
+        "beat": "thirst",
+        "chapter": "炎热的夏天 · 口渴的小乌鸦",
+        "title": "乌鸦喝水",
+        "subtitle": "一段从困难到发现的故事。",
+        "id": "s1",
+        "start": 0.0,
+        "end": 8.0,
+        "cues": [
+          {
+            "name": "crow_water_thirst_0",
+            "text": "乌鸦喝水。",
+            "start": 0.5,
+            "end": 2.572
+          },
+          {
+            "name": "crow_water_thirst_1",
+            "text": "夏天，一只乌鸦飞了很久，口渴极了。",
+            "start": 3.0,
+            "end": 7.304
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "search",
+        "chapter": "四处寻找 · 哪里才有水",
+        "title": "",
+        "subtitle": "",
+        "id": "s2",
+        "start": 8.0,
+        "end": 17.082,
+        "cues": [
+          {
+            "name": "crow_water_search_0",
+            "text": "它飞过树林，又来到一口井边。",
+            "start": 8.45,
+            "end": 11.866
+          },
+          {
+            "name": "crow_water_search_1",
+            "text": "井已经干了，乌鸦只好继续寻找。",
+            "start": 12.95,
+            "end": 16.582
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "discover",
+        "chapter": "终于发现 · 陶罐里的水",
+        "title": "",
+        "subtitle": "",
+        "id": "s3",
+        "start": 17.082,
+        "end": 26.082,
+        "cues": [
+          {
+            "name": "crow_water_discover_0",
+            "text": "忽然，它看见树下放着一个陶罐。",
+            "start": 17.532,
+            "end": 21.428
+          },
+          {
+            "name": "crow_water_discover_1",
+            "text": "乌鸦凑近一看：里面真的有水！",
+            "start": 22.032,
+            "end": 25.448
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "reach",
+        "chapter": "遇到困难 · 喝不到怎么办",
+        "title": "",
+        "subtitle": "",
+        "id": "s4",
+        "start": 26.082,
+        "end": 34.256,
+        "cues": [
+          {
+            "name": "crow_water_reach_0",
+            "text": "可是罐口太小，水面又太低。",
+            "start": 26.532,
+            "end": 30.044
+          },
+          {
+            "name": "crow_water_reach_1",
+            "text": "它伸长脖子，还是够不到水。",
+            "start": 30.532,
+            "end": 33.756
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "push",
+        "chapter": "第一次尝试 · 陶罐太重了",
+        "title": "",
+        "subtitle": "",
+        "id": "s5",
+        "start": 34.256,
+        "end": 44.256,
+        "cues": [
+          {
+            "name": "crow_water_push_0",
+            "text": "乌鸦想把陶罐推倒，让水流出来。",
+            "start": 34.706,
+            "end": 38.434
+          },
+          {
+            "name": "crow_water_push_1",
+            "text": "它用力推了推，陶罐却纹丝不动。",
+            "start": 39.706,
+            "end": 43.386
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "idea",
+        "chapter": "观察周围 · 小石子带来灵感",
+        "title": "",
+        "subtitle": "",
+        "id": "s6",
+        "start": 44.256,
+        "end": 54.256,
+        "cues": [
+          {
+            "name": "crow_water_idea_0",
+            "text": "乌鸦停下来，认真看了看四周。",
+            "start": 44.706,
+            "end": 48.17
+          },
+          {
+            "name": "crow_water_idea_1",
+            "text": "地上的小石子，让它有了一个主意。",
+            "start": 49.706,
+            "end": 53.434
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "test",
+        "chapter": "先试一颗 · 水面动了",
+        "title": "",
+        "subtitle": "",
+        "id": "s7",
+        "start": 54.256,
+        "end": 64.702,
+        "cues": [
+          {
+            "name": "crow_water_test_0",
+            "text": "它叼起一颗石子，放进陶罐。",
+            "start": 54.706,
+            "end": 58.122
+          },
+          {
+            "name": "crow_water_test_1",
+            "text": "咚！石子沉下去，水面升高了一点。",
+            "start": 59.706,
+            "end": 64.202
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "repeat",
+        "chapter": "再来几颗 · 办法真的有用",
+        "title": "",
+        "subtitle": "",
+        "id": "s8",
+        "start": 64.702,
+        "end": 74.702,
+        "cues": [
+          {
+            "name": "crow_water_repeat_0",
+            "text": "乌鸦一颗接一颗，把石子放进去。",
+            "start": 65.152,
+            "end": 68.736
+          },
+          {
+            "name": "crow_water_repeat_1",
+            "text": "石子越来越多，水面也越来越高。",
+            "start": 70.152,
+            "end": 73.784
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "drink",
+        "chapter": "终于喝到 · 清凉的水",
+        "title": "",
+        "subtitle": "",
+        "id": "s9",
+        "start": 74.702,
+        "end": 83.19,
+        "cues": [
+          {
+            "name": "crow_water_drink_0",
+            "text": "水终于升到了乌鸦够得着的地方。",
+            "start": 75.152,
+            "end": 78.904
+          },
+          {
+            "name": "crow_water_drink_1",
+            "text": "它低下头，痛痛快快地喝了起来。",
+            "start": 79.154,
+            "end": 82.69
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "moral",
+        "chapter": "故事里的智慧 · 观察与思考",
+        "title": "肯动脑筋\n办法总比困难多",
+        "subtitle": "观察、尝试，再坚持一下。",
+        "id": "s10",
+        "start": 83.19,
+        "end": 92.396,
+        "cues": [
+          {
+            "name": "crow_water_moral_0",
+            "text": "乌鸦解了渴，开心地继续上路。",
+            "start": 83.64,
+            "end": 86.984
+          },
+          {
+            "name": "crow_water_moral_1",
+            "text": "遇到困难，认真观察，动脑筋想办法。",
+            "start": 87.64,
+            "end": 91.896
+          }
+        ],
+        "min_duration": 8
+      }
+    ],
+    "duration": 92.396
+  },
+  "turtle-rabbit": {
+    "title": "龟兔赛跑",
+    "shots": [
+      {
+        "beat": "rivalry",
+        "chapter": "森林里 · 兔子的嘲笑",
+        "title": "龟兔赛跑",
+        "subtitle": "速度与坚持，会带来怎样的结局？",
+        "id": "s1",
+        "start": 0.0,
+        "end": 9.0,
+        "cues": [
+          {
+            "name": "turtle_rabbit_rivalry_0",
+            "text": "龟兔赛跑。",
+            "start": 0.5,
+            "end": 2.572
+          },
+          {
+            "name": "turtle_rabbit_rivalry_1",
+            "text": "兔子跑得很快，总爱嘲笑慢慢走的乌龟。",
+            "start": 3.0,
+            "end": 7.304
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "challenge",
+        "chapter": "发出挑战 · 终点就在前方",
+        "title": "",
+        "subtitle": "",
+        "id": "s2",
+        "start": 9.0,
+        "end": 18.0,
+        "cues": [
+          {
+            "name": "turtle_rabbit_challenge_0",
+            "text": "乌龟说：跑得快，不一定能赢。",
+            "start": 9.45,
+            "end": 12.986
+          },
+          {
+            "name": "turtle_rabbit_challenge_1",
+            "text": "不如我们比一比，看谁先到终点。",
+            "start": 13.95,
+            "end": 17.486
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "start",
+        "chapter": "比赛开始 · 两种不同的步伐",
+        "title": "",
+        "subtitle": "",
+        "id": "s3",
+        "start": 18.0,
+        "end": 27.328,
+        "cues": [
+          {
+            "name": "turtle_rabbit_start_0",
+            "text": "小动物们约好，山坡下的大树就是终点。",
+            "start": 18.45,
+            "end": 22.85
+          },
+          {
+            "name": "turtle_rabbit_start_1",
+            "text": "一声令下，兔子和乌龟一起出发。",
+            "start": 23.1,
+            "end": 26.828
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "lead",
+        "chapter": "遥遥领先 · 兔子回头看",
+        "title": "",
+        "subtitle": "",
+        "id": "s4",
+        "start": 27.328,
+        "end": 36.626,
+        "cues": [
+          {
+            "name": "turtle_rabbit_lead_0",
+            "text": "兔子跑得飞快，很快就遥遥领先。",
+            "start": 27.778,
+            "end": 31.458
+          },
+          {
+            "name": "turtle_rabbit_lead_1",
+            "text": "回头看时，乌龟还在远处慢慢走。",
+            "start": 32.278,
+            "end": 36.126
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "sleep",
+        "chapter": "过于自信 · 在树下睡一觉",
+        "title": "",
+        "subtitle": "",
+        "id": "s5",
+        "start": 36.626,
+        "end": 46.428,
+        "cues": [
+          {
+            "name": "turtle_rabbit_sleep_0",
+            "text": "兔子想：它那么慢，怎么可能追上我？",
+            "start": 37.076,
+            "end": 41.044
+          },
+          {
+            "name": "turtle_rabbit_sleep_1",
+            "text": "我先在树下睡一觉，醒来再跑也来得及。",
+            "start": 41.576,
+            "end": 45.928
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "steady",
+        "chapter": "一步一步 · 乌龟从不停下",
+        "title": "",
+        "subtitle": "",
+        "id": "s6",
+        "start": 46.428,
+        "end": 56.428,
+        "cues": [
+          {
+            "name": "turtle_rabbit_steady_0",
+            "text": "乌龟不着急，也没有停下来休息。",
+            "start": 46.878,
+            "end": 50.366
+          },
+          {
+            "name": "turtle_rabbit_steady_1",
+            "text": "它只盯着前方，一步一步走向终点。",
+            "start": 51.878,
+            "end": 55.654
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "overtake",
+        "chapter": "悄悄超越 · 兔子仍在睡觉",
+        "title": "",
+        "subtitle": "",
+        "id": "s7",
+        "start": 56.428,
+        "end": 66.428,
+        "cues": [
+          {
+            "name": "turtle_rabbit_overtake_0",
+            "text": "经过大树时，它看见了熟睡的兔子。",
+            "start": 56.878,
+            "end": 60.63
+          },
+          {
+            "name": "turtle_rabbit_overtake_1",
+            "text": "乌龟没有叫醒它，继续认真地向前走。",
+            "start": 61.878,
+            "end": 65.846
+          }
+        ],
+        "min_duration": 10
+      },
+      {
+        "beat": "wake",
+        "chapter": "突然醒来 · 现在追还来得及吗",
+        "title": "",
+        "subtitle": "",
+        "id": "s8",
+        "start": 66.428,
+        "end": 76.566,
+        "cues": [
+          {
+            "name": "turtle_rabbit_wake_0",
+            "text": "过了好一会儿，兔子终于醒了。",
+            "start": 66.878,
+            "end": 69.934
+          },
+          {
+            "name": "turtle_rabbit_wake_1",
+            "text": "糟糕！乌龟快到终点了，它赶紧追过去。",
+            "start": 71.378,
+            "end": 76.066
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "finish",
+        "chapter": "冲过终点 · 坚持赢得比赛",
+        "title": "",
+        "subtitle": "",
+        "id": "s9",
+        "start": 76.566,
+        "end": 85.864,
+        "cues": [
+          {
+            "name": "turtle_rabbit_finish_0",
+            "text": "兔子拼命奔跑，可是已经来不及了。",
+            "start": 77.016,
+            "end": 80.672
+          },
+          {
+            "name": "turtle_rabbit_finish_1",
+            "text": "乌龟先到终点，小动物们欢呼起来。",
+            "start": 81.516,
+            "end": 85.364
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "moral",
+        "chapter": "故事里的智慧 · 认真走好每一步",
+        "title": "持之以恒\n一步一步，也能到达",
+        "subtitle": "跑得快，也要认真走完全程。",
+        "id": "s10",
+        "start": 85.864,
+        "end": 95.43,
+        "cues": [
+          {
+            "name": "turtle_rabbit_moral_0",
+            "text": "兔子低下头，承认自己太骄傲了。",
+            "start": 86.314,
+            "end": 89.754
+          },
+          {
+            "name": "turtle_rabbit_moral_1",
+            "text": "认真对待比赛，坚持到底，才能赢得胜利。",
+            "start": 90.314,
+            "end": 94.93
+          }
+        ],
+        "min_duration": 8
+      }
+    ],
+    "duration": 95.43
+  },
+  "foolish-move-mountain": {
+    "title": "愚公移山",
+    "shots": [
+      {
+        "beat": "blocked",
+        "chapter": "家门前 · 两座大山挡住去路",
+        "title": "愚公移山",
+        "subtitle": "从一个决定，到一条通向远方的路。",
+        "id": "s1",
+        "start": 0.0,
+        "end": 8.0,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_blocked_0",
+            "text": "愚公移山。",
+            "start": 0.5,
+            "end": 2.572
+          },
+          {
+            "name": "foolish_move_mountain_blocked_1",
+            "text": "太行和王屋两座大山，挡在愚公家门前。",
+            "start": 3.0,
+            "end": 7.448
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "plan",
+        "chapter": "全家商议 · 做一个大胆的决定",
+        "title": "",
+        "subtitle": "",
+        "id": "s2",
+        "start": 8.0,
+        "end": 16.798,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_plan_0",
+            "text": "每天出门，都要绕很远的路。",
+            "start": 8.45,
+            "end": 11.65
+          },
+          {
+            "name": "foolish_move_mountain_plan_1",
+            "text": "愚公召集家人，决定一起把山搬走。",
+            "start": 12.45,
+            "end": 16.298
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "question",
+        "chapter": "家人的疑问 · 土石运到哪里",
+        "title": "",
+        "subtitle": "",
+        "id": "s3",
+        "start": 16.798,
+        "end": 25.214,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_question_0",
+            "text": "家人问：挖出的土石放到哪里？",
+            "start": 17.248,
+            "end": 20.856
+          },
+          {
+            "name": "foolish_move_mountain_question_1",
+            "text": "愚公说：我们把它运到渤海边去。",
+            "start": 21.106,
+            "end": 24.714
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "dig",
+        "chapter": "开始行动 · 第一锄落下",
+        "title": "",
+        "subtitle": "",
+        "id": "s4",
+        "start": 25.214,
+        "end": 34.206,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_dig_0",
+            "text": "第二天，愚公带着儿孙来到山脚。",
+            "start": 25.664,
+            "end": 29.32
+          },
+          {
+            "name": "foolish_move_mountain_dig_1",
+            "text": "他们凿石头，挖泥土，认真干了起来。",
+            "start": 29.57,
+            "end": 33.706
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "carry",
+        "chapter": "漫长的路 · 一筐一筐运出去",
+        "title": "",
+        "subtitle": "",
+        "id": "s5",
+        "start": 34.206,
+        "end": 42.862,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_carry_0",
+            "text": "挖出的土石，装进筐里运走。",
+            "start": 34.656,
+            "end": 38.024
+          },
+          {
+            "name": "foolish_move_mountain_carry_1",
+            "text": "路途很远，来回一趟要花很长时间。",
+            "start": 38.274,
+            "end": 42.362
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "doubt",
+        "chapter": "智叟质疑 · 这样怎么搬得完",
+        "title": "",
+        "subtitle": "",
+        "id": "s6",
+        "start": 42.862,
+        "end": 51.636,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_doubt_0",
+            "text": "一个叫智叟的老人，笑他们太傻。",
+            "start": 43.312,
+            "end": 46.944
+          },
+          {
+            "name": "foolish_move_mountain_doubt_1",
+            "text": "你已经这么老了，怎么搬得完两座大山？",
+            "start": 47.312,
+            "end": 51.136
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "answer",
+        "chapter": "愚公回答 · 坚持可以传下去",
+        "title": "",
+        "subtitle": "",
+        "id": "s7",
+        "start": 51.636,
+        "end": 61.102,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_answer_0",
+            "text": "愚公说：我做不完，还有儿子。",
+            "start": 52.086,
+            "end": 55.574
+          },
+          {
+            "name": "foolish_move_mountain_answer_1",
+            "text": "儿子做不完，还有孙子，一代接一代。",
+            "start": 56.586,
+            "end": 60.602
+          }
+        ],
+        "min_duration": 9
+      },
+      {
+        "beat": "generations",
+        "chapter": "共同坚持 · 大山不会再长高",
+        "title": "",
+        "subtitle": "",
+        "id": "s8",
+        "start": 61.102,
+        "end": 70.79,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_generations_0",
+            "text": "子孙会不断延续，大山却不会再长高。",
+            "start": 61.552,
+            "end": 65.808
+          },
+          {
+            "name": "foolish_move_mountain_generations_1",
+            "text": "只要一直挖下去，总有一天能把路打开。",
+            "start": 66.058,
+            "end": 70.29
+          }
+        ],
+        "min_duration": 8
+      },
+      {
+        "beat": "seasons",
+        "chapter": "日复一日 · 没有放弃",
+        "title": "",
+        "subtitle": "",
+        "id": "s9",
+        "start": 70.79,
+        "end": 79.206,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_seasons_0",
+            "text": "寒来暑往，愚公一家始终没有放弃。",
+            "start": 71.24,
+            "end": 75.16
+          },
+          {
+            "name": "foolish_move_mountain_seasons_1",
+            "text": "他们的决心，终于感动了天帝。",
+            "start": 75.41,
+            "end": 78.706
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "divine",
+        "chapter": "天帝相助 · 两位神来到山前",
+        "title": "",
+        "subtitle": "",
+        "id": "s10",
+        "start": 79.206,
+        "end": 87.622,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_divine_0",
+            "text": "天帝派来了两位力大无穷的神。",
+            "start": 79.656,
+            "end": 83.024
+          },
+          {
+            "name": "foolish_move_mountain_divine_1",
+            "text": "让他们帮助愚公，背走这两座大山。",
+            "start": 83.274,
+            "end": 87.122
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "lift",
+        "chapter": "大山被搬走 · 家门前终于开阔",
+        "title": "",
+        "subtitle": "",
+        "id": "s11",
+        "start": 87.622,
+        "end": 96.35,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_lift_0",
+            "text": "两位神背起大山，把它们搬到了远方。",
+            "start": 88.072,
+            "end": 92.064
+          },
+          {
+            "name": "foolish_move_mountain_lift_1",
+            "text": "家门前，终于不再有大山挡路了。",
+            "start": 92.314,
+            "end": 95.85
+          }
+        ],
+        "min_duration": 7
+      },
+      {
+        "beat": "moral",
+        "chapter": "故事里的智慧 · 决心与坚持",
+        "title": "只要坚持\n终会打开一条路",
+        "subtitle": "有决心，也要用行动把路一步一步走出来。",
+        "id": "s12",
+        "start": 96.35,
+        "end": 106.038,
+        "cues": [
+          {
+            "name": "foolish_move_mountain_moral_0",
+            "text": "愚公和家人，终于走上了宽阔的路。",
+            "start": 96.8,
+            "end": 100.528
+          },
+          {
+            "name": "foolish_move_mountain_moral_1",
+            "text": "认准目标，坚持不懈，就能改变眼前的困难。",
+            "start": 100.778,
+            "end": 105.538
+          }
+        ],
+        "min_duration": 7
+      }
+    ],
+    "duration": 106.038
+  }
+}
